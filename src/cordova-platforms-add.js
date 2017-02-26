@@ -24,6 +24,7 @@ if (_.isArray(platforms) && platforms.length) {
 		if (err) {
 			// Directory doesn't exist or something.
 		}
+
 		if (stats && stats.isDirectory()) {
 			exec(
 				[

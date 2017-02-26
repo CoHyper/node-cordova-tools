@@ -22,7 +22,6 @@ let platforms = CONFIG.getKey('platforms');
 if (_.isArray(platforms) && platforms.length) {
 
 	fs.stat(projectPath, function (err, stats) {
-
 		if (err) {
 			// Directory doesn't exist or something.
 		}

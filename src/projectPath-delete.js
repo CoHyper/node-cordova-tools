@@ -11,11 +11,11 @@ let CONFIG = require('./../lib/config');
  */
 let projectPath = CONFIG.getKey('projectPath');
 
-
 fs.stat(projectPath, function (err, stats) {
 	if (err) {
 		// Directory doesn't exist or something.
 	}
+
 	if (stats && stats.isDirectory()) {
 		exec(
 			`rm -rf ${projectPath}`,

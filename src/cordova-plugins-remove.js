@@ -22,6 +22,7 @@ if (_.isArray(plugins) && plugins.length) {
 		if (err) {
 			// Directory doesn't exist or something.
 		}
+
 		if (stats && stats.isDirectory()) {
 			exec(
 				[

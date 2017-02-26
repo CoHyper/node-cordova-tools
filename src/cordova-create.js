@@ -18,11 +18,11 @@ let projectPath = CONFIG.getKey('projectPath');
 let bundleId = CONFIG.getKey('bundleId');
 let title = CONFIG.getKey('title');
 
-
 fs.stat(projectPath, function (err, stats) {
 	if (err) {
 		// Directory doesn't exist or something.
 	}
+
 	if (stats && stats.isDirectory()) {
 		// exists
 	} else {
