@@ -17,6 +17,13 @@ module.exports = {
 	plugins: [
 		"cordova-plugin-device",
 		"cordova-plugin-dialogs"
-	]
+	],
+	copyFile: {
+		"index.html": "index.html",
+		"index2.html": "index2.html"
+	},
+	copyFolder: {
+		"plugins": "www"
+	}
 
 };
