@@ -10,9 +10,11 @@ module.exports = {
 
 	bundleId: 'com.apuerto.myyapp',
 	title: 'Myy App',
-	projectPath: "_bbuild", // todo create folder when '/'
+	projectPath: "_bbuild", // todo solution create folder when '/', mkdir, rm -rf
 	platforms: [
-		"browser"
+		"browser",
+		"android",
+		"ios"
 	],
 	plugins: [
 		"cordova-plugin-device",
