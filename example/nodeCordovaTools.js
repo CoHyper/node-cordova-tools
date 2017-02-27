@@ -6,8 +6,6 @@
 
 module.exports = {
 
-	// todo need root ? - no
-
 	config: "www/js/Project/app/www/config.json", // todo
 
 	bundleId: 'com.apuerto.palmeras',

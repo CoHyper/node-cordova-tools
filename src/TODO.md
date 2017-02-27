@@ -8,3 +8,4 @@
 * build
 * release
 * xml / version
+* cordova requirements
