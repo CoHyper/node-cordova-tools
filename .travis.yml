@@ -1,14 +1,16 @@
+# http://lint.travis-ci.org/
+
 language: node_js
 node_js:
   - "7"
   - "6"
-before_install:
+# before_install:
 install:
   - "npm install -g cordova"
   - "npm install -g babelify"
   - "npm install -g browserify"
 before_script:
-	- "cp -r tests/nodeCordovaTools.js ../nodeCordovaTools.js"
+  - "cp -r tests/nodeCordovaTools.js ../nodeCordovaTools.js"
 script:
   - "node src/cordova-create.js"
   - "node src/cordova-platforms-add.js"
