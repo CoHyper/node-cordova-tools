@@ -1,10 +1,9 @@
 
 ###
-* js-lint
-* js-min
-* css
-* css-min
-* less
 * build
 * release
 * cordova requirements
+* add deprecated output
+* install apk
+* uninstall apk
+* multitasking ?

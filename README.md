@@ -4,7 +4,6 @@
 
 ## Require
 * NodeJS
-* python
 
 ## Require Optional
 ````shell
@@ -22,4 +21,20 @@ gem install sass
 
 ## Create new project
 
+## Structur
+Settings in 'nodeCordovaTools.js' must in parent folder.
+
+```
+root/
+|- node-cordova-tools/*
+|- node_modules/*
+|- .gitignore
+|- .gitmodules
+|- nodeCordovaTools.js
+|- package.json
+|- README.md
+```
+
+### 2014-02-27 v1.0.0
+* beta
 
