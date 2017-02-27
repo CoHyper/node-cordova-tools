@@ -7,6 +7,6 @@ node_js:
 before_script:
   - "cp example/nodeCordovaTools.js ../nodeCordovaTools.js"
   - "cd .. "
-	- "npm install -g cordova"
+  - "npm install -g cordova"
 script:
   - "node node-cordova-tools/src/cordova-create.js"
