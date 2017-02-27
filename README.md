@@ -1,13 +1,10 @@
 # node-cordova-tools
-> node-project-tools
-
-> node-package-tools
-
 > BETA
 
 
 ## Require
 * NodeJS
+* python
 
 ## Require Optional
 ````shell
@@ -17,6 +14,9 @@ npm install --save-dev eslint
 // node-minify
 // https://www.npmjs.com/package/node-minify
 npm install --save-dev node-minify
+
+// sass
+gem install sass
  
 ````
 
