@@ -24,5 +24,7 @@ fs.stat(projectPath, function (err, stats) {
 			].join(' && '),
 			CONFIG.onCallback
 		);
+	} else {
+		console.warn(`The projectPath (${projectPath}) not exists.`);
 	}
 });

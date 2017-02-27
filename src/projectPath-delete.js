@@ -21,5 +21,7 @@ fs.stat(projectPath, function (err, stats) {
 			`rm -rf ${projectPath}`,
 			CONFIG.onCallback
 		);
+	} else {
+		console.warn(`The projectPath (${projectPath}) not exists.`);
 	}
 });

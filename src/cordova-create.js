@@ -25,6 +25,7 @@ fs.stat(projectPath, function (err, stats) {
 
 	if (stats && stats.isDirectory()) {
 		// exists
+		console.warn(`Cant create new project in projectPath (${projectPath}).`);
 	} else {
 		exec(
 			`cordova create ${projectPath} ${bundleId} '${title}'`,

@@ -33,6 +33,8 @@ if (CONFIG.utility.isArray(platforms) && platforms.length) {
 				].join(' && '),
 				CONFIG.onCallback
 			);
+		} else {
+			console.warn(`The projectPath (${projectPath}) not exists.`);
 		}
 	});
 

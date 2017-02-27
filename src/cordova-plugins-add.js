@@ -30,6 +30,8 @@ if (CONFIG.utility.isArray(plugins) && plugins.length) {
 				].join(' && '),
 				CONFIG.onCallback
 			);
+		} else {
+			console.warn(`The projectPath (${projectPath}) not exists.`);
 		}
 	});
 } else {

@@ -30,7 +30,7 @@ if (CONFIG.utility.isObject(copy)) {
 				if (stats && (stats.isDirectory() || stats.isFile())) {
 					command.push(`cp -r ${key} ${projectPath}/${copy[key]}`);
 				} else {
-					console.warn(`${key} not exists.`);
+					console.warn(`(${key}) is no file or folder.`);
 				}
 			});
 

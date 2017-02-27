@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-let exec = require('child_process').exec;
 let fs = require('fs');
 let compressor = require('node-minify');
 let CONFIG = require('./../lib/config');
@@ -10,6 +9,8 @@ let CONFIG = require('./../lib/config');
  *
  * @requires npm install --save-dev node-minify
  * https://www.npmjs.com/package/node-minify
+ *
+ * @test works with uglify-js
  *
  * @param {string} projectPath
  * @param {object} jsMinifyOptions

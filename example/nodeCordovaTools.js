@@ -7,6 +7,7 @@
 module.exports = {
 
 	config: "www/js/Project/app/www/config.json", // todo
+	delete_projectPath: true, // todo
 
 	bundleId: 'com.apuerto.palmeras',
 	title: 'Fonda Las Palmeras',
@@ -23,14 +24,14 @@ module.exports = {
 	sassInput: "www/css/_index.scss",
 	sassOutput: "www/css/index.css", // relativ to projectPath
 	copy: {
-		// relativ to projectPath
+		// input: output // output = relativ to projectPath
 		"www/index.html": "www/index.html",
 		"www/js/Project/app/www/config.json": "www/config.json",
 		"www/js/Project/app/www/favicon.ico": "www/favicon.ico",
 		"www/js/Project/app/www/img": "www",
 		"www/js/Project/app/platforms": ""
 	},
-	eslintrc: "./.eslintrc.js",
+	eslintrc: ".eslintrc.js",
 	eslintFiles: [
 		"www/js/App.js",
 		"www/js/**/*.js",
@@ -43,6 +44,11 @@ module.exports = {
 			"_tmp/*.js"
 		],
 		output: "www/js/bar.js" // relativ to projectPath
+	},
+	jsBrowserify: {
+		input: "www/js/App.js",
+		output: "www/js/index.js", // relativ to projectPath
+		options: "--plugins [] --presets [ es2015 ]"
 	}
 
 };
