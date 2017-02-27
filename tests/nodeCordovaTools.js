@@ -6,6 +6,6 @@
 
 module.exports = {
 
-	configJS: 'node-cordova-tools/example/nodeCordovaTools.js'
+	configJS: 'example/nodeCordovaTools.js'
 
 };
