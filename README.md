@@ -1,29 +1,25 @@
 # node-cordova-tools
-BETA
+> node-project-tools
+
+> node-package-tools
+
+> BETA
 
 
 ## Require
 * NodeJS
-* ECMA 6
 
+## Require Optional
 ````shell
-
+// js-eslint
+npm install --save-dev eslint
+ 
+// node-minify
+// https://www.npmjs.com/package/node-minify
+npm install --save-dev node-minify
+ 
 ````
 
 ## Create new project
 
-* add 'nodeCordovaTools to package.json
-````json
-{
-	"nodeCordovaTools": {
-		"config": [
-			"www/js/Project/app/www/config.json"
-		],
-		"title": null,
-		"bundleId": null,
-		"projectPath": "",
-		"platforms": [],
-		"plugins": []
-	}
-}
-````
+

@@ -1,18 +1,10 @@
 
 ###
-* copy-file
-* copy-folder
 * js-lint
-* js-eslint
 * js-min
 * css
 * css-min
-* sass / less
-* html
-* run
+* less
 * build
 * release
-* xml
-* version
-
-
+* xml / version

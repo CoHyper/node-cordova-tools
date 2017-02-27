@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+let eslint = require('eslint');
+let exec = require('child_process').exec;
+let fs = require('fs');
+let CONFIG = require('./../lib/config');
+
+/**
+ * @author Sven Hedström-Lang
+ *
+ * @requires npm install --save-dev eslint
+ * http://eslint.org/docs/user-guide/getting-started
+ *
+ * @param {string} projectPath
+ * @param {string} eslintrc
+ * @param {array} eslintFiles
+ */
+let projectPath = CONFIG.getKey('projectPath');
+let eslintrc = CONFIG.getKey('eslintrc');
+let eslintFiles = CONFIG.getKey('eslintFiles');
+
+if (CONFIG.utility.isArray(eslintFiles)) {
+	exec(
+		`eslint --config ${eslintrc} ${eslintFiles.join(' ')}`,
+		CONFIG.onCallback
+	);
+}
