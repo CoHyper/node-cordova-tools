@@ -6,12 +6,17 @@ node_js:
   - "6"
 # before_install:
 install:
+  - "npm install -g mocha"
   - "npm install -g cordova"
   - "npm install -g babelify"
   - "npm install -g browserify"
 before_script:
   - "cp -r tests/nodeCordovaTools.js ../nodeCordovaTools.js"
 script:
+  - "node src/projectPath-delete.js"
   - "node src/cordova-create.js"
   - "node src/cordova-platforms-add.js"
   - "node src/cordova-plugins-add.js"
+  - "node src/cordova-clean-images.js"
+  - "node src/xml-version.js"
+  - "node src/copy.js"
