@@ -2,10 +2,7 @@
   "name": "node-cordova-tools",
   "version": "1.0.0",
   "description": "BETA",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Sven Hedström-Lang <SvenLang07@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+	"scripts": {}
 }

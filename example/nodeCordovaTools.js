@@ -10,25 +10,28 @@ module.exports = {
 
 	bundleId: 'com.apuerto.palmeras',
 	title: 'Fonda Las Palmeras',
-	version: '1.2.4',
+	version: '1.0.9',
 
 	/**
 	 * The path to create the cordova application.
 	 * No "/" slash at first or end string.
 	 *
-	 * @param projectPath
 	 * @type string
 	 */
-	projectPath: 'build/newApp/any',
+	projectPath: 'build',
 
 	/**
-	 * @param platforms
 	 * @type array
 	 */
 	platforms: [
 		'browser',
-		'android'
+		'android',
+		'ios'
 	],
+
+	/**
+	 * @type array
+	 */
 	plugins: [
 		'cordova-plugin-device',
 		'cordova-plugin-dialogs',
@@ -63,6 +66,8 @@ module.exports = {
 		output: 'www/js/index.js', // relativ to projectPath
 		options: '--plugins [] --presets [ es2015 ]'
 	},
-	buildConfig: 'www/js/Project/store/build.json'
+	buildConfig: 'www/js/Project/store/build.json',
+	textEditor: '/usr/local/bin/subl',
+	androidAdb: '~/Library/Android/sdk/platform-tools/adb'
 
 };

@@ -21,17 +21,7 @@ module.exports = {
 			"www/js/Project/www/js/ProjectPlugin.js"
 		]
 	},
-	NODE_SCRIPT: {
-		json: 'node tools/project-json.js',
-		dev_js: 'node tools/project-js.js',
-		platforms_remove: 'node ./tools/project-platforms-remove.js'
-	},
-
-	/*
-	 _todo_NODE_SCRIPT: {
-	 _assets: 'node ./tools/project-assets.js',
-	 _css_watch: 'node ./tools/project-css-watch.js'
-	 },
+/*
 
 	 FILE_CONFIG_XML_COPY: 'app/config.xml',
 	 FILE_CONFIG_XML_PYTHON: 'hyper-core/hooks/configXML.py',
@@ -41,11 +31,11 @@ module.exports = {
 
 	onCallback: function (error, stdout, stderr) {
 		if (error) {
-			console.log(`${stdout}`);
-			console.log(`${stderr}`);
+			console.log(stdout);
+			console.log(stderr);
 			throw error;
 		} else {
-			console.log(`${stdout}`);
+			console.log(stdout);
 		}
 	},
 
@@ -89,16 +79,6 @@ module.exports = {
 	 CORE_FILES: [
 	 './source/core/App.js'
 	 ],
-
-	 getLibraries: function(type) {
-	 let out = [];
-
-	 this.LIBRARIES.forEach(function(item, index) {
-	 if (item[type]) {
-	 }
-
-	 });
-	 },
 	 */
 
 	/**
@@ -137,7 +117,7 @@ module.exports = {
 								json = _.merge(json, newJsonData);
 							} else {
 								console.log('############');
-								console.log('### TODO : _config.js');
+								console.log('### TODO : mergeJson() - _config.js');
 								console.log('############');
 							}
 						} else {
