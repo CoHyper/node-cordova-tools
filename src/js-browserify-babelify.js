@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-let babelify = require('babelify');
-let browserify = require('browserify');
 let exec = require('child_process').exec;
 let fs = require('fs');
 let CONFIG = require('./../lib/config');

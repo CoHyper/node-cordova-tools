@@ -5,7 +5,11 @@ node_js:
 before_install:
 install:
   - "npm install -g cordova"
+  - "npm install -g babelify"
+  - "npm install -g browserify"
 before_script:
+	- "cp -r tests/nodeCordovaTools.js ../nodeCordovaTools.js"
 script:
   - "node src/cordova-create.js"
-  - "node src/cordova-platform-add.js"
+  - "node src/cordova-platforms-add.js"
+  - "node src/cordova-plugins-add.js"

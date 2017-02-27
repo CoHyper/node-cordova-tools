@@ -6,7 +6,7 @@
 
 module.exports = {
 
-	configJs: 'www/js/Project/app/www/config.js', // todo
+	configJS: 'www/js/Project/app/www/config.js', // todo
 
 	bundleId: 'com.apuerto.palmeras',
 	title: 'Fonda Las Palmeras',
