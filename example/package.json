@@ -1,3 +1,19 @@
 {
-
+	"scripts": {
+		"delete app folder": "node node-cordova-tools/src/projectPath-delete.js",
+		"-": "",
+		"new app": "node node-cordova-tools/src/cordova-create.js",
+		"add platform": "node node-cordova-tools/src/cordova-platforms-add.js",
+		"add plugin": "node node-cordova-tools/src/cordova-plugins-add.js",
+		"clean cordova icons": "node node-cordova-tools/src/cordova-clean-images.js",
+		"update version": "node node-cordova-tools/src/xml-version.js",
+		"copy files and folders": "node node-cordova-tools/src/copy.js",
+		"js-lint": "node node-cordova-tools/src/js-eslint.js",
+		"js-babelify": "node node-cordova-tools/src/js-browserify-babelify.js",
+		"run browser": "node node-cordova-tools/src/cordova-run-browser.js",
+		"--": "",
+		"js-min": "node node-cordova-tools/src/js-min.js",
+		"remove platform": "node node-cordova-tools/src/cordova-platforms-remove.js",
+		"remove plugin": "node node-cordova-tools/src/cordova-plugins-remove.js"
+	}
 }

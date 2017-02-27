@@ -7,3 +7,4 @@
 * install apk
 * uninstall apk
 * multitasking ?
+* default variables ?

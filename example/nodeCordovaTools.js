@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+'use strict';
 
 /**
  * @author Sven Heddtröm-Lang
@@ -11,7 +11,20 @@ module.exports = {
 	bundleId: 'com.apuerto.palmeras',
 	title: 'Fonda Las Palmeras',
 	version: '1.2.4',
-	projectPath: 'build', // todo solution create folder when '/', mkdir, rm -rf ?
+
+	/**
+	 * The path to create the cordova application.
+	 * No "/" slash at first or end string.
+	 *
+	 * @param projectPath
+	 * @type string
+	 */
+	projectPath: 'build/newApp/any',
+
+	/**
+	 * @param platforms
+	 * @type array
+	 */
 	platforms: [
 		'browser',
 		'android'
@@ -41,7 +54,7 @@ module.exports = {
 	jsMinifyOptions: {
 		compressor: 'uglifyjs',
 		input: [
-			'_tmp/*.js'
+			'node-cordova-tools/example/nodeCordovaTools.js'
 		],
 		output: 'www/js/bar.js' // relativ to projectPath
 	},

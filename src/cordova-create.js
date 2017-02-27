@@ -20,17 +20,19 @@ let title = CONFIG.getKey('title');
 
 fs.stat(projectPath, function (err, stats) {
 	if (err) {
-		// folder not exists
-		// return console.warn(err);
+
+		// bugfix: if folder not exists, also create empty one
+		let app = projectPath.replace(/\/$/, '').split('/');
+
+		for (let i = 1; i <= app.length; i++) {
+			let segment = app.slice(0, i).join('/');
+			!fs.existsSync(segment) ? fs.mkdirSync(segment) : null;
+		}
 	}
 
-	if (stats && stats.isDirectory()) {
-		// exists
-		console.warn(`Cant create new project in projectPath (${projectPath}).`);
-	} else {
-		exec(
-			`cordova create ${projectPath} ${bundleId} '${title}'`,
-			CONFIG.onCallback
-		);
-	}
+	exec(
+		`cordova create ${projectPath} ${bundleId} '${title}'`,
+		CONFIG.onCallback
+	);
+
 });

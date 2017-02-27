@@ -15,21 +15,18 @@ let projectPath = CONFIG.getKey('projectPath');
 let platforms = CONFIG.getKey('platforms');
 let platform = 'browser';
 
-if (CONFIG.utility.isStringInArray(platform, platforms)) {
+fs.stat(`${projectPath}/platforms/${platform}`, function (err, stats) {
+	if (err) {
+		return console.warn(err);
+	}
 
-	fs.stat(`${projectPath}/platforms/${platform}`, function (err, stats) {
-		if (err) {
-			return console.warn(err);
-		}
-
-		if (stats && stats.isDirectory()) {
-			exec(
-				[
-					`cd ${projectPath}`,
-					`cordova run ${platform}`
-				].join(' && '),
-				CONFIG.onCallback
-			);
-		}
-	});
-}
+	if (stats && stats.isDirectory()) {
+		exec(
+			[
+				`cd ${projectPath}`,
+				`cordova run ${platform}`
+			].join(' && '),
+			CONFIG.onCallback
+		);
+	}
+});
