@@ -2,11 +2,10 @@ language: node_js
 node_js:
   - "7"
   - "6"
-# before_install:
-# install:
-before_script:
-  - "cp example/nodeCordovaTools.js ../nodeCordovaTools.js"
-  - "cd .. "
+before_install:
+install:
   - "npm install -g cordova"
+before_script:
 script:
-  - "node node-cordova-tools/src/cordova-create.js"
+  - "node src/cordova-create.js"
+  - "node src/cordova-platform-add.js"

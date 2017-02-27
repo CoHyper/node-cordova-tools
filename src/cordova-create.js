@@ -23,7 +23,6 @@ fs.stat(projectPath, function (err, stats) {
 
 		// bugfix: if folder not exists, create empty one
 		let appPath = projectPath.replace(/\/$/, '').split('/');
-
 		for (let i = 1; i <= appPath.length; i++) {
 			let segment = appPath.slice(0, i).join('/');
 			!fs.existsSync(segment) ? fs.mkdirSync(segment) : null;
