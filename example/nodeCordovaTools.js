@@ -19,7 +19,9 @@ module.exports = {
 	plugins: [
 		"cordova-plugin-device",
 		"cordova-plugin-dialogs"
-	]
+	],
+	sassInput: "app/www/css/_index.scss",
+	sassOutput: "www/css/index.css" // relativ to projectPath
 	/*,
 
 	copyFile: {
