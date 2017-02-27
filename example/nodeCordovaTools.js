@@ -62,6 +62,7 @@ module.exports = {
 		input: 'www/js/App.js',
 		output: 'www/js/index.js', // relativ to projectPath
 		options: '--plugins [] --presets [ es2015 ]'
-	}
+	},
+	buildConfig: 'www/js/Project/store/build.json'
 
 };
