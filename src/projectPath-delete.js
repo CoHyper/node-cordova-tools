@@ -13,7 +13,7 @@ let projectPath = CONFIG.getKey('projectPath');
 
 fs.stat(projectPath, function (err, stats) {
 	if (err) {
-		// Directory doesn't exist or something.
+		return console.warn(err);
 	}
 
 	if (stats && stats.isDirectory()) {
@@ -21,7 +21,5 @@ fs.stat(projectPath, function (err, stats) {
 			`rm -rf ${projectPath}`,
 			CONFIG.onCallback
 		);
-	} else {
-		console.warn(`The projectPath (${projectPath}) not exists.`);
 	}
 });

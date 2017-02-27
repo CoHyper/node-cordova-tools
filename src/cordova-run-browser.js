@@ -19,7 +19,7 @@ if (CONFIG.utility.isStringInArray(platform, platforms)) {
 
 	fs.stat(`${projectPath}/platforms/${platform}`, function (err, stats) {
 		if (err) {
-			// Directory doesn't exist or something.
+			return console.warn(err);
 		}
 
 		if (stats && stats.isDirectory()) {

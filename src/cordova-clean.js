@@ -13,7 +13,7 @@ let projectPath = CONFIG.getKey('projectPath');
 
 fs.stat(projectPath, function (err, stats) {
 	if (err) {
-		// Directory doesn't exist or something.
+		return console.warn(err);
 	}
 
 	if (stats && stats.isDirectory()) {

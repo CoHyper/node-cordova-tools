@@ -10,11 +10,9 @@ let CONFIG = require('./../lib/config');
  * @author Sven Hedström-Lang
  *
  * @param {string} projectPath
- * @param {array} platforms
  * @param {string} title
  */
 let projectPath = CONFIG.getKey('projectPath');
-let projectPathplatforms = CONFIG.getKey('platforms');
 let title = CONFIG.getKey('title');
 
 // bugfix: spaces in title

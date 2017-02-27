@@ -20,7 +20,8 @@ let title = CONFIG.getKey('title');
 
 fs.stat(projectPath, function (err, stats) {
 	if (err) {
-		// Directory doesn't exist or something.
+		// folder not exists
+		// return console.warn(err);
 	}
 
 	if (stats && stats.isDirectory()) {

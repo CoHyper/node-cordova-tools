@@ -24,7 +24,7 @@ if (CONFIG.utility.isObject(copy)) {
 		if (copy.hasOwnProperty(key)) {
 			fs.stat(key, function (err, stats) {
 				if (err) {
-					// Directory doesn't exist or something.
+					return console.warn(err);
 				}
 
 				if (stats && (stats.isDirectory() || stats.isFile())) {

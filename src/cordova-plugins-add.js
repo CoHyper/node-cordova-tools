@@ -19,7 +19,7 @@ let plugins = CONFIG.getKey('plugins');
 if (CONFIG.utility.isArray(plugins) && plugins.length) {
 	fs.stat(projectPath, function (err, stats) {
 		if (err) {
-			// Directory doesn't exist or something.
+			return console.warn(err);
 		}
 
 		if (stats && stats.isDirectory()) {
