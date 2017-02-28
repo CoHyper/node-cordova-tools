@@ -4,21 +4,12 @@
  * @author Sven Heddtröm-Lang
  */
 
-
 module.exports = {
 
 	/**
 	 * If this set : all other variable ignore.
 	 */
-	// const DEFAULT_CONFIGJS = '../../nct.config.js';
-
-	// configJS: 'node-cordova-tools/tests/nct.config,js',
-	// configJS: '../node-cordova-tools/tests/nct2.config,js',
-	// configJS: '../../node-cordova-tools/tests/nct2.config,js', // ####
-	// configJS: 'tests/nct.config,js',
-	configJS: '../tests/nct2.config.js',// ####
-	//configJS: 'CoHyper/node-cordova-tools/tests/nct2.config.js',// ####
-	// configJS: '../../tests/nct2.config.js',
+	// configJS: '../example/nct.config.js'
 
 	/**
 	 * @type string
@@ -71,7 +62,7 @@ module.exports = {
 		'app/www/index.html': 'www/index.html',
 		'app/www/img': 'www'
 	},
-	eslintrc: '.eslintrc.js',
+	eslintrc: 'tests/.eslintrc.js',
 	eslintFiles: [
 		'www/es/App.js'
 	],

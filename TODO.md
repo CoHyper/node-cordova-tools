@@ -8,3 +8,5 @@
 * uninstall apk
 * multitasking ?
 * default variables ? merge ?
+* create a init
+

@@ -1,93 +1,46 @@
-'use strict';
 
-/**
- * @author Sven Heddtröm-Lang
- */
+module.export = {
 
-module.exports = {
-
-	/**
-	 * If this set : all other variable ignore.
-	 */
-	// configJS: '../example/nct.config.js'
-
-	/**
-	 * @type string
-	 */
-	bundleId: 'com.apuerto.palmeras',
-
-	/**
-	 * @type string
-	 */
-	title: 'Fonda Las Palmeras',
-
-	/**
-	 * @type string
-	 */
-	version: '1.0.10',
-
-	/**
-	 * The path to create a cordova application.
-	 * No "/" slash at first or end.
-	 *
-	 * @type string
-	 */
-	projectPath: 'build',
-
-	/**
-	 * @type array
-	 */
-	platforms: [
-		'browser',
-		'android',
-		'ios'
+	"bundleId": "com.apuerto.palmeras",
+	"title": "Fonda Las Palmeras",
+	"version": "1.0.10",
+	"projectPath": "build",
+	"platforms": [
+		"browser",
+		"android",
+		"ios"
 	],
-
-	/**
-	 * @type array
-	 */
-	plugins: [
-		'cordova-plugin-device',
-		'cordova-plugin-dialogs',
-		'cordova-plugin-whitelist'
+	"plugins": [
+		"cordova-plugin-device",
+		"cordova-plugin-dialogs",
+		"cordova-plugin-whitelist"
 	],
-	sassInput: 'www/css/_index.scss',
-
-	/**
-	 * @type string - Relativ to projectPath.
-	 */
-	sassOutput: 'www/css/index.css',
-	copy: {
-		// input: output // output = relativ to projectPath
-		'app/www/index.html': 'www/index.html',
-		'app/www/img': 'www'
+	"css": null,
+	"js": null,
+	"sassInput": "www/css/_index.scss",
+	"sassOutput": "www/css/index.css",
+	"copy": {
+		"app/www/index.html": "www/index.html",
+		"app/www/img": "www"
 	},
-	eslintrc: 'tests/.eslintrc.js',
-	eslintFiles: [
-		'www/es/App.js'
+	"eslintrc": "tests/.eslintrc.js",
+	"eslintFiles": [
+		"www/es/App.js"
 	],
-
-	/**
-	 * @type object
-	 * @param {string} compressor
-	 * @param {array} input
-	 * @param {string} output - Relativ to projectPath.
-	 */
-	jsMinifyOptions: {
-		compressor: 'uglifyjs',
-		input: [
-			'app/www/js/App.js'
+	"jsMinifyOptions": {
+		"compressor": "uglifyjs",
+		"input": [
+			"app/www/js/App.js"
 		],
-		output: 'www/js/app.min.js'
+		"output": "www/js/app.min.js"
 	},
-	jsBrowserify: {
-		input: 'www/es/App.js',
-		output: 'www/es/App.js', // relativ to projectPath
-		options: '--plugins [] --presets [ es2015 ]'
+	"jsBrowserify": {
+		"input": "www/es/App.js",
+		"output": "www/es/App.js",
+		"options": "--plugins [] --presets [ es2015 ]"
 	},
-	buildConfig: 'www/js/Project/store/build.json',
-
-	textEditor: '/usr/local/bin/subl',
-	androidAdb: '~/Library/Android/sdk/platform-tools/adb'
+	"buildConfig": "www/js/Project/store/build.json",
+	"textEditor": "/usr/local/bin/subl",
+	"androidAdb": "~/Library/Android/sdk/platform-tools/adb"
 
 };

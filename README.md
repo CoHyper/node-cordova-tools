@@ -18,6 +18,13 @@ npm install --save-dev node-minify
 gem install sass
  
 ````
+## Variables
+
+| var     | typ    |
+|---------|--------|
+| title   | string |
+| version | string |
+
 
 ## Create new project
 copy in same of 'node_modules/'
