@@ -1,5 +1,13 @@
 #!/usr/bin/env node
 
+/*
+ * node-cordova-tools
+ * https://github.com/CoHyper/node-cordova-tools
+ *
+ * Copyright (c) 2017 Sven Hedström-Lang
+ * Licensed under the MIT license.
+ */
+
 let fs = require('fs');
 let compressor = require('node-minify');
 let CONFIG = require('./../lib/config');
