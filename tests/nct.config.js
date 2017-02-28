@@ -62,7 +62,7 @@ module.exports = {
 		'app/www/index.html': 'www/index.html',
 		'app/www/img': 'www'
 	},
-	eslintrc: '.eslintrc.js',
+	eslintrc: 'tests/.eslintrc.js',
 	eslintFiles: [
 		'www/es/App.js'
 	],
