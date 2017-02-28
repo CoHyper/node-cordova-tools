@@ -4,7 +4,7 @@ module.export = {
 	"bundleId": "com.apuerto.palmeras",
 	"title": "Fonda Las Palmeras",
 	"version": "1.0.10",
-	"projectPath": "build",
+	projectPath: "build",
 	"platforms": [
 		"browser",
 		"android",
