@@ -10,7 +10,8 @@ module.exports = {
 	 * If this set : all other variable ignore.
 	 */
 	// configJS: 'node-cordova-tools/tests/nct.config,js',
-	configJS: '../node-cordova-tools/tests/nct2.config,js',
+	// configJS: '../node-cordova-tools/tests/nct2.config,js',
+	configJS: '../../node-cordova-tools/tests/nct2.config,js',
 	// configJS: 'tests/nct.config,js',
 	// configJS: '../tests/nct2.config.js',
 	// configJS: '../../tests/nct2.config.js',
