@@ -16,7 +16,8 @@ module.exports = {
 	// configJS: '../node-cordova-tools/tests/nct2.config,js',
 	// configJS: '../../node-cordova-tools/tests/nct2.config,js', // ####
 	// configJS: 'tests/nct.config,js',
-	configJS: '../tests/nct2.config.js',// ####
+	// ok configJS: '../tests/nct2.config.js',// ####
+	configJS: 'CoHyper/node-cordova-tools/tests/nct2.config.js',// ####
 	// configJS: '../../tests/nct2.config.js',
 
 	/**
