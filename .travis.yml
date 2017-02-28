@@ -6,7 +6,6 @@ node_js:
   - "6"
 before_install:
   - "cp -r example/* ../"
-  - "pwd"
 install:
   - "npm install -g cordova"
   - "npm install"

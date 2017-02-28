@@ -15,8 +15,6 @@ module.export = {
 		"cordova-plugin-dialogs",
 		"cordova-plugin-whitelist"
 	],
-	"css": null,
-	"js": null,
 	"sassInput": "www/css/_index.scss",
 	"sassOutput": "www/css/index.css",
 	"copy": {
