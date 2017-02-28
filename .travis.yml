@@ -6,14 +6,14 @@ node_js:
   - "6"
 before_install:
   - "cp -r example/* ../"
+  - "mv ../package-nct.json ../package.json"
   - "cd .."
-  - "mv package-nct.json package.json"
+  - "ls"
 install:
   - "npm install -g cordova"
   - "npm install"
 # before_script:
 script:
-  - "ls"
   - "node node-cordova-tools/src/projectPath-delete.js"
   - "node node-cordova-tools/src/cordova-create.js"
   - "node node-cordova-tools/src/cordova-platforms-add.js"
