@@ -12,6 +12,7 @@ install:
   - "npm install"
 # before_script:
 script:
+  - "ls"
   - "node node-cordova-tools/src/projectPath-delete.js"
   - "node node-cordova-tools/src/cordova-create.js"
   - "node node-cordova-tools/src/cordova-platforms-add.js"

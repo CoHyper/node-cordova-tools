@@ -6,15 +6,29 @@
 
 module.exports = {
 
+	/**
+	 * If this set : all other variable ignore.
+	 */
 	// configJS: '../example/nodeCordovaTools.js'
 
+	/**
+	 * @type string
+	 */
 	bundleId: 'com.apuerto.palmeras',
-	title: 'Fonda Las Palmeras',
-	version: '1.0.9',
 
 	/**
-	 * The path to create the cordova application.
-	 * No "/" slash at first or end string.
+	 * @type string
+	 */
+	title: 'Fonda Las Palmeras',
+
+	/**
+	 * @type string
+	 */
+	version: '1.0.10',
+
+	/**
+	 * The path to create a cordova application.
+	 * No "/" slash at first or end.
 	 *
 	 * @type string
 	 */
@@ -38,7 +52,11 @@ module.exports = {
 		'cordova-plugin-whitelist'
 	],
 	sassInput: 'www/css/_index.scss',
-	sassOutput: 'www/css/index.css', // relativ to projectPath
+
+	/**
+	 * @type string - Relativ to projectPath.
+	 */
+	sassOutput: 'www/css/index.css',
 	copy: {
 		// input: output // output = relativ to projectPath
 		'app/www/index.html': 'www/index.html',
@@ -48,12 +66,19 @@ module.exports = {
 	eslintFiles: [
 		'www/es/App.js'
 	],
+
+	/**
+	 * @type object
+	 * @param {string} compressor
+	 * @param {array} input
+	 * @param {string} output - Relativ to projectPath.
+	 */
 	jsMinifyOptions: {
 		compressor: 'uglifyjs',
 		input: [
 			'app/www/js/App.js'
 		],
-		output: 'www/js/app.min.js' // relativ to projectPath
+		output: 'www/js/app.min.js'
 	},
 	jsBrowserify: {
 		input: 'www/es/App.js',
