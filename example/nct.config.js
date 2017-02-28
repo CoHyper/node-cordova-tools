@@ -4,8 +4,6 @@
  * @author Sven Heddtröm-Lang
  */
 
-console.log('found the default config file'); // todo
-
 
 module.exports = {
 

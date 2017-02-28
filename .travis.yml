@@ -9,8 +9,8 @@ before_install:
   - "ls"
   - "ls tests"
 install:
-#  - "npm install -g cordova"
-#  - "npm install"
+  - "npm install -g cordova"
+  - "npm install"
 # before_script:
 script:
   - "node src/projectPath-delete.js"
