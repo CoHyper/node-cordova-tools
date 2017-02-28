@@ -12,7 +12,8 @@ module.exports = {
 	// configJS: 'node-cordova-tools/tests/nct.config,js',
 	// configJS: 'tests/nct.config,js',
 	// configJS: '../tests/nct2.config.js',
-	configJS: '../../tests/nct2.config.js',
+	// configJS: '../../tests/nct2.config.js',
+	configJS: 'tests/nct.config,js',
 
 	/**
 	 * @type string
