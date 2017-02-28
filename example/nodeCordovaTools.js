@@ -42,13 +42,11 @@ module.exports = {
 	copy: {
 		// input: output // output = relativ to projectPath
 		'app/www/index.html': 'www/index.html',
-		'app/www/config.json': 'www/config.json',
-		'app/www/favicon.ico': 'www/favicon.ico',
 		'app/www/img': 'www'
 	},
 	eslintrc: '.eslintrc.js',
 	eslintFiles: [
-		'www/js/es/App.js'
+		'www/es/App.js'
 	],
 	jsMinifyOptions: {
 		compressor: 'uglifyjs',
@@ -58,8 +56,8 @@ module.exports = {
 		output: 'www/js/app.min.js' // relativ to projectPath
 	},
 	jsBrowserify: {
-		input: 'www/js/es/App.js',
-		output: 'www/js/es/App.js', // relativ to projectPath
+		input: 'www/es/App.js',
+		output: 'www/es/App.js', // relativ to projectPath
 		options: '--plugins [] --presets [ es2015 ]'
 	},
 	buildConfig: 'www/js/Project/store/build.json',

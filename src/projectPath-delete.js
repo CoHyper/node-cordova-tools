@@ -13,13 +13,15 @@ let projectPath = CONFIG.getKey('projectPath');
 
 fs.stat(projectPath, function (err, stats) {
 	if (err) {
-		return console.warn(err);
+		return console.warn(`The directory (${projectPath}) not exists.`);
+		// console.warn(err);
 	}
 
-	if (stats && stats.isDirectory()) {
-		exec(
-			`rm -rf ${projectPath}`,
-			CONFIG.onCallback
-		);
-	}
+	exec(
+		`rm -rf ${projectPath}`,
+		CONFIG.onCallback
+	);
+
+	return console.log(`The directory (${projectPath}) removed.`);
+
 });
