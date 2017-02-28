@@ -20,6 +20,7 @@ gem install sass
 ````
 
 ## Create new project
+copy in same of 'node_modules/'
 ```shell
 cp -r node-cordova-tools/example/* ../../
 ```
