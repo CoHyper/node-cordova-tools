@@ -21,7 +21,7 @@ let eslintFiles = CONFIG.getKey('eslintFiles');
 
 if (CONFIG.utility.isArray(eslintFiles)) {
 	exec(
-		`../../node_modules/.bin/eslint --config ${eslintrc} ${eslintFiles.join(' ')}`,
+		`node_modules/.bin/eslint --config ${eslintrc} ${eslintFiles.join(' ')}`,
 		CONFIG.onCallback
 	);
 }

@@ -4,5 +4,9 @@
   "description": "BETA",
   "author": "Sven Hedström-Lang <SvenLang07@gmail.com>",
   "license": "MIT",
-	"scripts": {}
+  "scripts": {},
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "node-minify": "^2.0.3"
+  }
 }

@@ -9,7 +9,7 @@ module.exports = {
 	/**
 	 * If this set : all other variable ignore.
 	 */
-	// configJS: '../example/nodeCordovaTools.js'
+	// configJS: '../example/nct.config.js'
 
 	/**
 	 * @type string

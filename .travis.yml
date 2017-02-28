@@ -7,11 +7,10 @@ node_js:
 before_install:
   - "ls"
   - "cp -r example/* ../"
-  - "cd .."
-  - "ls"
 install:
   - "npm install -g cordova"
   - "npm install"
+  - "ls"
 # before_script:
 script:
   - "node node-cordova-tools/src/projectPath-delete.js"
