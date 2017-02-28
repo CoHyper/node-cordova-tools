@@ -1,4 +1,16 @@
 {
+	"name": "Fonda Las Palmeras",
+	"version": "1.0.9",
+	"description": "Hotel App",
+	"main": "index.js",
+	"repository": "_todo",
+	"license": "private",
+	"private": true,
+	"author": {
+		"name": "Sven Hedström-Lang",
+		"email": "SvenLang07@gmail.com"
+	},
+	"contributors": [],
 	"scripts": {
 		"delete app folder": "node node-cordova-tools/src/projectPath-delete.js",
 		"-": "",
@@ -15,5 +27,15 @@
 		"js-min": "node node-cordova-tools/src/js-min.js",
 		"remove platform": "node node-cordova-tools/src/cordova-platforms-remove.js",
 		"remove plugin": "node node-cordova-tools/src/cordova-plugins-remove.js"
+	},
+	"devDependencies": {
+		"babel": "",
+		"babel-cli": "",
+		"babel-preset-es2015": "",
+		"babelify": "",
+		"browserify": "",
+		"esdoc": "",
+		"eslint": "",
+		"node-minify": ""
 	}
 }

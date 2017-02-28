@@ -6,7 +6,7 @@
 
 module.exports = {
 
-	// configJS: 'www/js/Project/app/www/config.js', // todo
+	// configJS: '../example/nodeCordovaTools.js'
 
 	bundleId: 'com.apuerto.palmeras',
 	title: 'Fonda Las Palmeras',
@@ -41,32 +41,29 @@ module.exports = {
 	sassOutput: 'www/css/index.css', // relativ to projectPath
 	copy: {
 		// input: output // output = relativ to projectPath
-		'www/index.html': 'www/index.html',
-		'www/js/Project/app/www/config.json': 'www/config.json',
-		'www/js/Project/app/www/favicon.ico': 'www/favicon.ico',
-		'www/js/Project/app/www/img': 'www',
-		'www/js/Project/app/platforms': ''
+		'app/www/index.html': 'www/index.html',
+		'app/www/config.json': 'www/config.json',
+		'app/www/favicon.ico': 'www/favicon.ico',
+		'app/www/img': 'www'
 	},
 	eslintrc: '.eslintrc.js',
 	eslintFiles: [
-		'www/js/App.js',
-		'www/js/**/*.js',
-		'www/js/Project/www/js/ProjectModule.js',
-		'www/js/Project/www/js/ProjectPlugin.js'
+		'www/js/es/App.js'
 	],
 	jsMinifyOptions: {
 		compressor: 'uglifyjs',
 		input: [
-			'node-cordova-tools/example/nodeCordovaTools.js'
+			'app/www/js/App.js'
 		],
-		output: 'www/js/bar.js' // relativ to projectPath
+		output: 'www/js/app.min.js' // relativ to projectPath
 	},
 	jsBrowserify: {
-		input: 'www/js/App.js',
-		output: 'www/js/index.js', // relativ to projectPath
+		input: 'www/js/es/App.js',
+		output: 'www/js/es/App.js', // relativ to projectPath
 		options: '--plugins [] --presets [ es2015 ]'
 	},
 	buildConfig: 'www/js/Project/store/build.json',
+
 	textEditor: '/usr/local/bin/subl',
 	androidAdb: '~/Library/Android/sdk/platform-tools/adb'
 
