@@ -7,6 +7,7 @@ node_js:
 before_install:
   - "cp -r example/* ../"
   - "cd .."
+  - "mv package-nct.json package.json"
 install:
   - "npm install -g cordova"
   - "npm install"
