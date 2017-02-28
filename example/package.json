@@ -28,14 +28,18 @@
 		"remove platform": "node node-cordova-tools/src/cordova-platforms-remove.js",
 		"remove plugin": "node node-cordova-tools/src/cordova-plugins-remove.js"
 	},
+	"engines": {
+		"cordova": "^6.5.0",
+		"node": ">= 7.6.0"
+	},
 	"devDependencies": {
-		"babel": "",
-		"babel-cli": "",
-		"babel-preset-es2015": "",
-		"babelify": "",
-		"browserify": "",
-		"esdoc": "",
-		"eslint": "",
-		"node-minify": ""
+		"babel": "^6.23.0",
+		"babel-cli": "^6.23.0",
+		"babel-preset-es2015": "^6.22.0",
+		"babelify": "^7.3.0",
+		"browserify": "^14.0.0",
+		"esdoc": "^0.5.2",
+		"eslint": "^3.16.1",
+		"node-minify": "^2.0.3"
 	}
 }

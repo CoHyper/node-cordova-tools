@@ -20,6 +20,9 @@ gem install sass
 ````
 
 ## Create new project
+```shell
+cp -r node-cordova-tools/example/* ../../
+```
 
 ## Structur
 Settings in 'nodeCordovaTools.js' must in parent folder.

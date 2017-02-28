@@ -7,4 +7,4 @@
 * install apk
 * uninstall apk
 * multitasking ?
-* default variables ?
+* default variables ? merge ?

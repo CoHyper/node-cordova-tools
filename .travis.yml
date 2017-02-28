@@ -20,3 +20,6 @@ script:
   - "node node-cordova-tools/src/cordova-clean-images.js"
   - "node node-cordova-tools/src/xml-version.js"
   - "node node-cordova-tools/src/copy.js"
+  - "node node-cordova-tools/src/js-eslint.js"
+  - "node node-cordova-tools/src/js-min.js"
+  - "node node-cordova-tools/src/js-browserify-babelify.js"
