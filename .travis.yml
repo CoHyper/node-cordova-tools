@@ -3,10 +3,7 @@ node_js:
   - "7"
   - "6"
 before_install:
-  - "ls"
-  - "ls ../"
   - "cp -r example/* ../"
-  - "ls ../"
 install:
   - "npm install -g cordova"
   - "npm install"
