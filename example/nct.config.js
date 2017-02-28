@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * @author Sven Heddtröm-Lang
@@ -10,7 +9,7 @@ module.exports = {
 	/**
 	 * If this set : all other variable ignore and get from this file
 	 */
-	configJS: '../tests/nct.project2.config.js',// ####
+	configJS: '../tests/nct.project.config.js',// ####
 
 	/**
 	 * @type string
