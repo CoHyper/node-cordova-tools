@@ -8,37 +8,60 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-
 /**
- * @author Sven Hedström-Lang
- *
- * @requires npm install -g cordova
- *
- * @param {string} projectPath
- * @param {string} bundleId
- * @param {string} title
+ * cordova create <projectPath> <bundleId> <title>
  */
-let projectPath = CONFIG.getKey('projectPath');
-let bundleId = CONFIG.getKey('bundleId');
-let title = CONFIG.getKey('title');
 
-fs.stat(projectPath, function (err, stats) {
-	if (err) {
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'cordova-create';
 
-		// bugfix: if folder not exists, create empty one
-		let appPath = projectPath.replace(/\/$/, '').split('/');
-		for (let i = 1; i <= appPath.length; i++) {
-			let segment = appPath.slice(0, i).join('/');
-			!fs.existsSync(segment) ? fs.mkdirSync(segment) : null;
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
+});
+
+if (CONFIG.isArgs(['projectPath', 'bundleId', 'title'], NAMESPACE)) {
+
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+	const bundleId = CONFIG.getKey('bundleId');
+	const title = CONFIG.getKey('title');
+
+	fs.stat(projectPath, function (err, stats) {
+		if (err) {
+
+			// bugfix: if folder not exists, create empty one
+			let appPath = projectPath.replace(/\/$/, '').split('/');
+			for (let i = 1; i <= appPath.length; i++) {
+				let segment = appPath.slice(0, i).join('/');
+				!fs.existsSync(segment) ? fs.mkdirSync(segment) : null;
+			}
+
 		}
-	}
 
-	exec(
-		`cordova create ${projectPath} ${bundleId} '${title}'`,
-		CONFIG.onCallback
-	);
+		exec(
+			`cordova create ${projectPath} ${bundleId} '${title}'`,
+			function (error, stdout, stderr) {
+				if (error) {
+					console.warn(stdout);
+					console.warn(stderr);
+					console.warn(error);
+				} else {
+					CONFIG.nctReport({
+						type: 'INFO',
+						namespace: NAMESPACE,
+						message: stdout
+					});
+				}
+			}
+		);
 
+	});
+
+}
+
+CONFIG.nctReport({
+	type: 'END',
+	namespace: NAMESPACE
 });

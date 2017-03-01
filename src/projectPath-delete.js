@@ -15,6 +15,11 @@
 const CONFIG = require('./../lib/config');
 const NAMESPACE = 'projectPath-delete';
 
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
+});
+
 if (CONFIG.isArgs(['projectPath'], NAMESPACE)) {
 
 	const exec = require('child_process').exec;
@@ -29,27 +34,33 @@ if (CONFIG.isArgs(['projectPath'], NAMESPACE)) {
 				message: `The directory (${projectPath}) not exists.`
 			});
 			// console.warn(err);
-			return;
-		}
+		} else {
 
-		exec(
-			`rm -rf ${projectPath}`,
-			function (error, stdout, stderr) {
-				if (error) {
-					console.warn(stdout);
-					console.warn(stderr);
-					console.warn(error);
-				} else {
-					CONFIG.nctReport({
-						type: 'INFO',
-						namespace: NAMESPACE,
-						message: `The directory (${projectPath}) delete.`
-					});
-					// console.log(stdout);
+			exec(
+				`rm -rf ${projectPath}`,
+				function (error, stdout, stderr) {
+					if (error) {
+						console.warn(stdout);
+						console.warn(stderr);
+						console.warn(error);
+					} else {
+						CONFIG.nctReport({
+							type: 'INFO',
+							namespace: NAMESPACE,
+							message: `The directory (${projectPath}) delete.`
+						});
+						// console.log(stdout);
+					}
 				}
-			}
-		);
+			);
+
+		}
 
 	});
 
 }
+
+CONFIG.nctReport({
+	type: 'END',
+	namespace: NAMESPACE
+});

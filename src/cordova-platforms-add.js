@@ -46,3 +46,8 @@ if (CONFIG.isArray(platforms) && platforms.length) {
 } else {
 	console.warn('No platform found.');
 }
+
+CONFIG.nctReport({
+	type: 'ee',
+	namespace: NAMESPACE
+});

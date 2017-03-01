@@ -15,8 +15,12 @@
 const CONFIG = require('./../lib/config');
 const NAMESPACE = 'cordova-clean-images';
 
-if (CONFIG.isArgs(['projectPath', 'title'], NAMESPACE)) {
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
+});
 
+if (CONFIG.isArgs(['projectPath', 'title'], NAMESPACE)) {
 
 	const exec = require('child_process').exec;
 	const fs = require('fs');
@@ -34,11 +38,6 @@ if (CONFIG.isArgs(['projectPath', 'title'], NAMESPACE)) {
 		`${projectPath}/platforms/ios/${title}/Images.xcassets/LaunchImage.launchimage/*.png`,
 		`${projectPath}/www/img/logo.png`
 	];
-
-	CONFIG.nctReport({
-		type: 'START',
-		namespace: NAMESPACE
-	});
 
 	images.forEach(function (item) {
 		exec(
@@ -61,9 +60,9 @@ if (CONFIG.isArgs(['projectPath', 'title'], NAMESPACE)) {
 		);
 	});
 
-	CONFIG.nctReport({
-		type: 'END',
-		namespace: NAMESPACE
-	});
-
 }
+
+CONFIG.nctReport({
+	type: 'END',
+	namespace: NAMESPACE
+});

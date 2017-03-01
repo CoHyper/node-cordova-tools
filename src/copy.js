@@ -15,13 +15,19 @@
  */
 
 const CONFIG = require('./../lib/config');
+const NAMESPACE = 'copy';
 
-if (CONFIG.isArgs(['projectPath', 'copy'])) {
+CONFIG.nctReport({
+	type: 'END',
+	namespace: NAMESPACE
+});
+
+if (CONFIG.isArgs(['projectPath', 'copy'], NAMESPACE)) {
 
 	const exec = require('child_process').exec;
 	const fs = require('fs');
-	let projectPath = CONFIG.getKey('projectPath');
-	let copy = CONFIG.getKey('copy');
+	const projectPath = CONFIG.getKey('projectPath');
+	const copy = CONFIG.getKey('copy');
 
 	for (let key in copy) {
 
@@ -31,7 +37,7 @@ if (CONFIG.isArgs(['projectPath', 'copy'])) {
 					CONFIG.nctReport({
 						id: 1,
 						type: 'ERROR',
-						namespace: 'copy',
+						namespace: NAMESPACE,
 						message: err
 					});
 					return;
@@ -44,7 +50,7 @@ if (CONFIG.isArgs(['projectPath', 'copy'])) {
 							CONFIG.nctReport({
 								id: 2,
 								type: 'ERROR',
-								namespace: 'copy',
+								namespace: NAMESPACE,
 								message: err
 							});
 							return;
@@ -64,8 +70,8 @@ if (CONFIG.isArgs(['projectPath', 'copy'])) {
 										CONFIG.nctReport({
 											id: 3,
 											type: 'INFO',
-											namespace: 'copy',
-											message: `copy ${key} to ${projectPath}/${copy[key]}`
+											namespace: NAMESPACE,
+											message: `Copy ${key} to ${projectPath}/${copy[key]}`
 										});
 									}
 								}
@@ -77,7 +83,7 @@ if (CONFIG.isArgs(['projectPath', 'copy'])) {
 					CONFIG.nctReport({
 						id: 4,
 						type: 'ERROR',
-						namespace: 'copy',
+						namespace: NAMESPACE,
 						message: `(${key}) is no file or folder.`
 					});
 				}
@@ -87,3 +93,8 @@ if (CONFIG.isArgs(['projectPath', 'copy'])) {
 	}
 
 }
+
+CONFIG.nctReport({
+	type: 'END',
+	namespace: NAMESPACE
+});

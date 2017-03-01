@@ -6,6 +6,10 @@
 
 module.exports = {
 
+	/**
+	 * @type object
+	 * @default undefined
+	 */
 	"report": {
 		"start": true,
 		"error": true,
