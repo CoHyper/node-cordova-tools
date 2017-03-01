@@ -21,4 +21,3 @@ script:
   - "node src/js-eslint.js"
   - "node src/js-min.js"
   - "node src/js-browserify-babelify.js"
-# http://lint.travis-ci.org/

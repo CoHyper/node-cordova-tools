@@ -9,7 +9,7 @@ module.exports = {
 	/**
 	 * If this set : all other variable ignore and get from this file
 	 */
-	configJS: '../tests/nct.project.config.js',// ####
+	configJSON: '../tests/nct.project.config.json',
 
 	/**
 	 * @type string
@@ -57,12 +57,30 @@ module.exports = {
 	 * @type string - Relativ to projectPath.
 	 */
 	sassOutput: 'www/css/index.css',
+
+	/**
+	 * @type object
+	 * @example
+	 * 		"copy": {
+	 * 			// input : output	(relativ to projectPath)
+	 * 			"app/www/index.html": "www/index.html",
+	 * 		}
+	 */
 	copy: {
-		// input: output // output = relativ to projectPath
 		'app/www/index.html': 'www/index.html',
 		'app/www/img': 'www'
 	},
+
+	/**
+	 * @type string
+	 * @description The config file for eslint. Works with JS or JSON.
+	 */
 	eslintrc: '.eslintrc.js',
+
+	/**
+	 * @type array
+	 * @description All files to control.
+	 */
 	eslintFiles: [
 		'www/es/App.js'
 	],
@@ -80,14 +98,27 @@ module.exports = {
 		],
 		output: 'www/js/app.min.js'
 	},
+
+	/**
+	 * todo
+	 */
 	jsBrowserify: {
 		input: 'www/es/App.js',
 		output: 'www/es/App.js', // relativ to projectPath
 		options: '--plugins [] --presets [ es2015 ]'
 	},
+
 	buildConfig: 'www/js/Project/store/build.json',
 
+	/**
+	 * @type string
+	 * @description To open a file in an IDE.
+	 */
 	textEditor: '/usr/local/bin/subl',
+
+	/**
+	 * @type string
+	 */
 	androidAdb: '~/Library/Android/sdk/platform-tools/adb'
 
 };

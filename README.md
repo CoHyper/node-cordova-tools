@@ -33,18 +33,8 @@ cp -r node-cordova-tools/example/* ../../
 ```
 
 ## Structur
-Settings in 'nodeCordovaTools.js' must in parent folder.
 
-```
-root/
-|- node-cordova-tools/*
-|- node_modules/*
-|- .gitignore
-|- .gitmodules
-|- nodeCordovaTools.js
-|- package.json
-|- README.md
-```
+## Release History
 
 ### 2014-02-27 v1.0.0
 * beta
