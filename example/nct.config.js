@@ -119,6 +119,11 @@ module.exports = {
 	/**
 	 * @type string
 	 */
-	androidAdb: '~/Library/Android/sdk/platform-tools/adb'
+	androidAdb: '~/Library/Android/sdk/platform-tools/adb',
+
+	/**
+	 * @type string
+	 */
+	nodeModulesDir: 'node_modules'
 
 };

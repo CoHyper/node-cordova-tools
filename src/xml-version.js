@@ -35,6 +35,13 @@ fs.readFile(configXmlFile, 'utf8', function (err, stats) {
 		if (err) {
 			return console.warn(err);
 		}
+
+		CONFIG.nctReport({
+			type: 'INFO',
+			namespace: 'xml-version.js',
+			message: `Update the version to ${version}`
+		});
+
 	});
 });
 
