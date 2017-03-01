@@ -25,7 +25,7 @@ let CONFIG = require('./../lib/config');
 let projectPath = CONFIG.getKey('projectPath');
 let platforms = CONFIG.getKey('platforms');
 
-if (CONFIG.utility.isArray(platforms) && platforms.length) {
+if (CONFIG.isArray(platforms) && platforms.length) {
 
 	fs.stat(projectPath, function (err, stats) {
 		if (err) {

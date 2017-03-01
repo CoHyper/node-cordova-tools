@@ -22,9 +22,19 @@ let CONFIG = require('./../lib/config');
  */
 let projectPath = CONFIG.getKey('projectPath');
 let title = CONFIG.getKey('title');
+let images = [
+	`${projectPath}/platforms/android/res/**/screen.png`,
+	`${projectPath}/platforms/android/res/**/icon.png`,
+	`${projectPath}/platforms/browser/img/logo.png`,
+	`${projectPath}/platforms/ios/${title}/Images.xcassets/AppIcon.appiconset/*.png`,
+	`${projectPath}/platforms/ios/${title}/Images.xcassets/LaunchImage.launchimage/*.png`,
+	`${projectPath}/www/img/logo.png`
+];
 
 // bugfix: spaces in title
 title = title.replace(/ /g, '\\ ');
+
+console.log('# NCT: Start Delete the image:');
 
 exec(
 	[
@@ -37,4 +47,8 @@ exec(
 	].join(' && '),
 	CONFIG.onCallback
 );
+
+images.forEach(function (item) {
+	console.log(`# NCT: Delete the image ${projectPath}/${item}.`);
+});
 

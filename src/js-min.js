@@ -38,7 +38,7 @@ let CONFIG = require('./../lib/config');
 let projectPath = CONFIG.getKey('projectPath');
 let jsMinifyOptions = CONFIG.getKey('jsMinifyOptions');
 
-if (CONFIG.utility.isObject(jsMinifyOptions)) {
+if (CONFIG.isObject(jsMinifyOptions)) {
 	jsMinifyOptions.callback = function (err, min) {
 		if (err) {
 			console.warn(err);

@@ -23,7 +23,7 @@ let CONFIG = require('./../lib/config');
 let projectPath = CONFIG.getKey('projectPath');
 let plugins = CONFIG.getKey('plugins');
 
-if (CONFIG.utility.isArray(plugins) && plugins.length) {
+if (CONFIG.isArray(plugins) && plugins.length) {
 	fs.stat(projectPath, function (err, stats) {
 		if (err) {
 			return console.warn(err);
