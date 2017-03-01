@@ -7,11 +7,6 @@
 module.exports = {
 
 	/**
-	 * If this set : all other variable ignore and get from this file
-	 */
-	configJSON: '../tests/nct.project.config.json',
-
-	/**
 	 * @type string
 	 */
 	bundleId: 'com.apuerto.palmeras',
@@ -119,6 +114,11 @@ module.exports = {
 	/**
 	 * @type string
 	 */
-	androidAdb: '~/Library/Android/sdk/platform-tools/adb'
+	androidAdb: '~/Library/Android/sdk/platform-tools/adb',
+
+	/**
+	 * @type string
+	 */
+	nodeModulesDir: 'node_modules'
 
 };

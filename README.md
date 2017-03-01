@@ -20,10 +20,27 @@ gem install sass
 ````
 ## Variables
 
-| var     | typ    |
-|---------|--------|
-| title   | string |
-| version | string |
+| Name | Required | Default | Description |
+|---|----|----|----|
+| bundleId | | | |
+| copy | copy.js | | |
+| eslintFiles | | | |
+| eslintrc | | | |
+| jsMinifyOptions | | | |
+| jsMinifyOptions.compressor | | | |
+| jsMinifyOptions.input | | | |
+| jsMinifyOptions.output | | | |
+| jsBrowserify | | | |
+| jsBrowserify.input | | | |
+| jsBrowserify.output | | | |
+| jsBrowserify.options | | | |
+| platforms | | | |
+| plugins | | | |
+| projectPath | | | |
+| sassInput | | | |
+| sassOutput | | | |
+| title | | | |
+| version | | | |
 
 
 ## Create new project

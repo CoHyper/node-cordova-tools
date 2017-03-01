@@ -6,8 +6,6 @@
   "license": "MIT",
   "scripts": {},
   "devDependencies": {
-    "babelify": "^7.3.0",
-    "browserify": "^14.1.0",
     "eslint": "^3.16.1",
     "node-minify": "^2.0.3"
   }

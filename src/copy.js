@@ -14,8 +14,7 @@ let CONFIG = require('./../lib/config');
 
 /**
  * Copy files and folders.
- * If file exists override.
- * If folder exists sync.
+ * If file or folder exists override.
  *
  * @author Sven Hedström-Lang
  *
@@ -26,7 +25,7 @@ let projectPath = CONFIG.getKey('projectPath');
 let copy = CONFIG.getKey('copy');
 let command = [];
 
-if (CONFIG.utility.isObject(copy)) {
+if (CONFIG.isObject(copy)) {
 
 	for (let key in copy) {
 		if (copy.hasOwnProperty(key)) {
@@ -37,6 +36,7 @@ if (CONFIG.utility.isObject(copy)) {
 
 				if (stats && (stats.isDirectory() || stats.isFile())) {
 					command.push(`cp -r ${key} ${projectPath}/${copy[key]}`);
+					console.log(`copy ${key} to ${projectPath}/${copy[key]}`);
 				} else {
 					console.warn(`(${key}) is no file or folder.`);
 				}
@@ -47,7 +47,7 @@ if (CONFIG.utility.isObject(copy)) {
 
 	fs.stat(projectPath, function (err, stats) {
 		if (err) {
-			// Directory doesn't exist or something.
+			return console.warn(err);
 		}
 
 		if (stats && stats.isDirectory()) {

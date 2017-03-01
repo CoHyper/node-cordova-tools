@@ -25,24 +25,59 @@ let CONFIG = require('./../lib/config');
  * @param {string} jsBrowserify.input
  * @param {string} jsBrowserify.output
  * @param {string} jsBrowserify.options
+ * @param {string} nodeModulesDir
  */
-let projectPath = CONFIG.getKey('projectPath');
-let jsBrowserify = CONFIG.getKey('jsBrowserify');
-let input = jsBrowserify.input;
-let output = `${projectPath}/${jsBrowserify.output}`;
-let options = ` ${jsBrowserify.options} `; // require empty strings at first and end
+if (CONFIG.isArgs(['projectPath', 'jsBrowserify', 'nodeModulesDir'])) {
 
-fs.stat(projectPath, function (err, stats) {
-	if (err) {
-		return console.warn(err);
-	}
+	let projectPath = CONFIG.getKey('projectPath');
+	let jsBrowserify = CONFIG.getKey('jsBrowserify');
+	let nodeModulesDir = CONFIG.getKey('nodeModulesDir');
+	let input = jsBrowserify.input;
+	let output = `${projectPath}/${jsBrowserify.output}`;
+	let options = ` ${jsBrowserify.options} `; // require empty strings at first and end
 
-	if (stats && stats.isDirectory()) {
-		exec(
-			`browserify ${input} -o ${output} -t [ babelify ${options} ]`,
-			CONFIG.onCallback
-		);
-	} else {
-		console.warn(`The projectPath (${projectPath}) not exists.`);
-	}
-});
+	fs.stat(projectPath, function (err, stats) {
+		if (err) {
+			return console.warn(`The projectPath (${projectPath}) not exists.`, err);
+			// return console.warn(err);
+		}
+
+		// check browserify
+		let node_browserify = `${nodeModulesDir}/browserify`;
+		fs.stat(node_browserify, function (err, stats) {
+			if (err) {
+				return console.warn(`Missing ${node_browserify}`, err);
+			}
+
+			// check babelify
+			let node_babelify = `${nodeModulesDir}/babelify`;
+			fs.stat(node_babelify, function (err, stats) {
+				if (err) {
+					return console.warn(`Missing ${node_babelify}`, err);
+				}
+
+				// todo input , output, options
+
+				exec(
+					`browserify ${input} -o ${output} -t [ babelify ${options} ]`,
+					function (error, stdout, stderr) {
+						if (error) {
+							console.warn(stdout);
+							console.warn(stderr);
+							return console.warn(error);
+						} else {
+							// console.log(stdout);
+							CONFIG.nctReport({
+								type: 'INFO',
+								namespace: 'js-browserify-babelify',
+								message: 'Build browserify and babelify.' + stdout
+							});
+						}
+					}
+				);
+
+			}); // END check babelify
+		}); // END check browserify
+	}); // END check projectPath
+
+}
