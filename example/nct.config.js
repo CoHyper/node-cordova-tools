@@ -7,11 +7,6 @@
 module.exports = {
 
 	/**
-	 * If this set : all other variable ignore and get from this file
-	 */
-	configJSON: '../tests/nct.project.config.json',
-
-	/**
 	 * @type string
 	 */
 	bundleId: 'com.apuerto.palmeras',
