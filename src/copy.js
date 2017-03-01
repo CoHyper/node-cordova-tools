@@ -8,59 +8,82 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-
 /**
  * Copy files and folders.
  * If file or folder exists override.
- *
- * @author Sven Hedström-Lang
- *
- * @param {string} projectPath
- * @param {object} copy
+ * todo - if exists override variables?
  */
+
+const CONFIG = require('./../lib/config');
+
 if (CONFIG.isArgs(['projectPath', 'copy'])) {
 
+	const exec = require('child_process').exec;
+	const fs = require('fs');
 	let projectPath = CONFIG.getKey('projectPath');
 	let copy = CONFIG.getKey('copy');
-	let command = [];
 
-	if (CONFIG.isObject(copy)) {
+	for (let key in copy) {
 
-		for (let key in copy) {
+		if (copy.hasOwnProperty(key)) {
+			fs.stat(key, function (err, stats) {
+				if (err) {
+					CONFIG.nctReport({
+						id: 1,
+						type: 'ERROR',
+						namespace: 'copy',
+						message: err
+					});
+					return;
+				}
 
-			if (copy.hasOwnProperty(key)) {
-				fs.stat(key, function (err, stats) {
-					if (err) {
-						return console.warn(err);
-					}
+				if (stats && (stats.isDirectory() || stats.isFile())) {
 
-					if (stats && (stats.isDirectory() || stats.isFile())) {
-						command.push(`cp -r ${key} ${projectPath}/${copy[key]}`);
-						console.log(`copy ${key} to ${projectPath}/${copy[key]}`);
-					} else {
-						console.warn(`(${key}) is no file or folder.`);
-					}
-				});
+					fs.stat(projectPath, function (err, stats) {
+						if (err) {
+							CONFIG.nctReport({
+								id: 2,
+								type: 'ERROR',
+								namespace: 'copy',
+								message: err
+							});
+							return;
+						}
 
-			}
+						if (stats && stats.isDirectory()) {
+
+							exec(
+								`cp -r ${key} ${projectPath}/${copy[key]}`,
+								function (error, stdout, stderr) {
+									if (error) {
+										console.warn(stdout);
+										console.warn(stderr);
+										console.warn(error);
+									} else {
+										// console.log(stdout);
+										CONFIG.nctReport({
+											id: 3,
+											type: 'INFO',
+											namespace: 'copy',
+											message: `copy ${key} to ${projectPath}/${copy[key]}`
+										});
+									}
+								}
+							);
+						}
+					});
+
+				} else {
+					CONFIG.nctReport({
+						id: 4,
+						type: 'ERROR',
+						namespace: 'copy',
+						message: `(${key}) is no file or folder.`
+					});
+				}
+			});
+
 		}
-
-		fs.stat(projectPath, function (err, stats) {
-			if (err) {
-				return console.warn(err);
-			}
-
-			if (stats && stats.isDirectory()) {
-				exec(
-					command.join(' && '),
-					CONFIG.onCallback
-				);
-			}
-		});
-
 	}
 
 }

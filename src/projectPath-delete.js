@@ -8,28 +8,48 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-
 /**
- * @author Sven Hedström-Lang
- *
- * @param {string} projectPath
+ * Delete directory of "projectPath".
  */
-let projectPath = CONFIG.getKey('projectPath');
 
-fs.stat(projectPath, function (err, stats) {
-	if (err) {
-		return console.warn(`The directory (${projectPath}) not exists.`);
-		// console.warn(err);
-	}
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'projectPath-delete';
 
-	exec(
-		`rm -rf ${projectPath}`,
-		CONFIG.onCallback
-	);
+if (CONFIG.isArgs(['projectPath'], NAMESPACE)) {
 
-	return console.log(`The directory (${projectPath}) removed.`);
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
 
-});
+	fs.stat(projectPath, function (err, stats) {
+		if (err) {
+			CONFIG.nctReport({
+				type: 'INFO', // no ERROR
+				namespace: NAMESPACE,
+				message: `The directory (${projectPath}) not exists.`
+			});
+			// console.warn(err);
+			return;
+		}
+
+		exec(
+			`rm -rf ${projectPath}`,
+			function (error, stdout, stderr) {
+				if (error) {
+					console.warn(stdout);
+					console.warn(stderr);
+					console.warn(error);
+				} else {
+					CONFIG.nctReport({
+						type: 'INFO',
+						namespace: NAMESPACE,
+						message: `The directory (${projectPath}) delete.`
+					});
+					// console.log(stdout);
+				}
+			}
+		);
+
+	});
+
+}
