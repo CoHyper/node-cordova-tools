@@ -8,6 +8,7 @@
  * Licensed under the MIT license.
  */
 
+let eslint = require('eslint');
 let exec = require('child_process').exec;
 let fs = require('fs');
 let CONFIG = require('./../lib/config');
@@ -15,21 +16,20 @@ let CONFIG = require('./../lib/config');
 /**
  * @author Sven Hedström-Lang
  *
+ * @requires npm install --save-dev eslint
+ * http://eslint.org/docs/user-guide/getting-started
+ *
  * @param {string} projectPath
+ * @param {string} eslintrc
+ * @param {array} eslintFiles
  */
 let projectPath = CONFIG.getKey('projectPath');
+let eslintrc = CONFIG.getKey('eslintrc');
+let eslintFiles = CONFIG.getKey('eslintFiles');
 
-fs.stat(projectPath, function (err, stats) {
-	if (err) {
-		return console.warn(`The directory (${projectPath}) not exists.`);
-		// console.warn(err);
-	}
-
+if (CONFIG.utility.isArray(eslintFiles)) {
 	exec(
-		`rm -rf ${projectPath}`,
+		`node_modules/.bin/eslint --config ${eslintrc} ${eslintFiles.join(' ')}`,
 		CONFIG.onCallback
 	);
-
-	return console.log(`The directory (${projectPath}) removed.`);
-
-});
+}

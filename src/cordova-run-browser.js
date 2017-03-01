@@ -15,21 +15,25 @@ let CONFIG = require('./../lib/config');
 /**
  * @author Sven Hedström-Lang
  *
- * @param {string} projectPath
+ * @requires npm install -g cordova
  */
-let projectPath = CONFIG.getKey('projectPath');
 
-fs.stat(projectPath, function (err, stats) {
+let projectPath = CONFIG.getKey('projectPath');
+let platforms = CONFIG.getKey('platforms');
+let platform = 'browser';
+
+fs.stat(`${projectPath}/platforms/${platform}`, function (err, stats) {
 	if (err) {
-		return console.warn(`The directory (${projectPath}) not exists.`);
-		// console.warn(err);
+		return console.warn(err);
 	}
 
-	exec(
-		`rm -rf ${projectPath}`,
-		CONFIG.onCallback
-	);
-
-	return console.log(`The directory (${projectPath}) removed.`);
-
+	if (stats && stats.isDirectory()) {
+		exec(
+			[
+				`cd ${projectPath}`,
+				`cordova run ${platform}`
+			].join(' && '),
+			CONFIG.onCallback
+		);
+	}
 });

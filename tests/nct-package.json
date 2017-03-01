@@ -1,0 +1,45 @@
+{
+	"name": "Fonda Las Palmeras",
+	"version": "1.0.9",
+	"description": "App",
+	"main": "index.js",
+	"repository": "_todo",
+	"license": "private",
+	"private": true,
+	"author": {
+		"name": "Sven Hedström-Lang",
+		"email": "SvenLang07@gmail.com"
+	},
+	"contributors": [],
+	"scripts": {
+		"delete app folder": "node node-cordova-tools/src/projectPath-delete.js",
+		"-": "",
+		"new app": "node node-cordova-tools/src/cordova-create.js",
+		"add platform": "node node-cordova-tools/src/cordova-platforms-add.js",
+		"add plugin": "node node-cordova-tools/src/cordova-plugins-add.js",
+		"clean cordova icons": "node node-cordova-tools/src/cordova-clean-images.js",
+		"update version": "node node-cordova-tools/src/xml-version.js",
+		"copy files and folders": "node node-cordova-tools/src/copy.js",
+		"js-lint": "node node-cordova-tools/src/js-eslint.js",
+		"js-babelify": "node node-cordova-tools/src/js-browserify-babelify.js",
+		"run browser": "node node-cordova-tools/src/cordova-run-browser.js",
+		"--": "",
+		"js-min": "node node-cordova-tools/src/js-min.js",
+		"remove platform": "node node-cordova-tools/src/cordova-platforms-remove.js",
+		"remove plugin": "node node-cordova-tools/src/cordova-plugins-remove.js"
+	},
+	"engines": {
+		"cordova": "^6.5.0",
+		"node": ">= 7.6.0"
+	},
+	"devDependencies": {
+		"babel": "^6.23.0",
+		"babel-cli": "^6.23.0",
+		"babel-preset-es2015": "^6.22.0",
+		"babelify": "^7.3.0",
+		"browserify": "^14.0.0",
+		"esdoc": "^0.5.2",
+		"eslint": "^3.16.1",
+		"node-minify": "^2.0.3"
+	}
+}

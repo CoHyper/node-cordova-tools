@@ -21,15 +21,18 @@ let projectPath = CONFIG.getKey('projectPath');
 
 fs.stat(projectPath, function (err, stats) {
 	if (err) {
-		return console.warn(`The directory (${projectPath}) not exists.`);
-		// console.warn(err);
+		return console.warn(err);
 	}
 
-	exec(
-		`rm -rf ${projectPath}`,
-		CONFIG.onCallback
-	);
-
-	return console.log(`The directory (${projectPath}) removed.`);
-
+	if (stats && stats.isDirectory()) {
+		exec(
+			[
+				`cd ${projectPath}`,
+				'cordova clean'
+			].join(' && '),
+			CONFIG.onCallback
+		);
+	} else {
+		console.warn(`The projectPath (${projectPath}) not exists.`);
+	}
 });

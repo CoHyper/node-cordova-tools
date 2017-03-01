@@ -18,27 +18,26 @@ let CONFIG = require('./../lib/config');
  * @requires npm install -g cordova
  *
  * @param {string} projectPath
- * @param {string} bundleId
- * @param {string} title
+ * @param {string} buildConfig
+ * @param {string} platform
  */
 let projectPath = CONFIG.getKey('projectPath');
-let bundleId = CONFIG.getKey('bundleId');
-let title = CONFIG.getKey('title');
+let buildConfig = CONFIG.getKey('buildConfig');
+let platform = 'android';
 
 fs.stat(projectPath, function (err, stats) {
 	if (err) {
-
-		// bugfix: if folder not exists, create empty one
-		let appPath = projectPath.replace(/\/$/, '').split('/');
-		for (let i = 1; i <= appPath.length; i++) {
-			let segment = appPath.slice(0, i).join('/');
-			!fs.existsSync(segment) ? fs.mkdirSync(segment) : null;
-		}
+		return console.warn(err);
 	}
 
-	exec(
-		`cordova create ${projectPath} ${bundleId} '${title}'`,
-		CONFIG.onCallback
-	);
-
+	if (stats && stats.isDirectory()) {
+		exec(
+			[
+				`cd ${projectPath}`,
+				`cordova clean ${platform}`,
+				`cordova build ${platform} --release --buildConfig ${buildConfig}`
+			].join(' && '),
+			CONFIG.onCallback
+		);
+	}
 });

@@ -13,23 +13,26 @@ let fs = require('fs');
 let CONFIG = require('./../lib/config');
 
 /**
- * @author Sven Hedström-Lang
+ *
+ * @requires "Android Device to USB"
  *
  * @param {string} projectPath
+ * @param {string} androidAdb
  */
 let projectPath = CONFIG.getKey('projectPath');
+let androidAdb = CONFIG.getKey('androidAdb');
 
-fs.stat(projectPath, function (err, stats) {
+let releasePath = `${projectPath}/platforms/android/build/outputs/apk`;
+
+// check releasePath
+fs.stat(releasePath, function (err, stats) {
 	if (err) {
-		return console.warn(`The directory (${projectPath}) not exists.`);
-		// console.warn(err);
+		return console.warn(err);
 	}
 
 	exec(
-		`rm -rf ${projectPath}`,
+		`${androidAdb} install ${releasePath}/android-release.apk`,
 		CONFIG.onCallback
 	);
-
-	return console.log(`The directory (${projectPath}) removed.`);
 
 });

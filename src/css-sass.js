@@ -15,21 +15,13 @@ let CONFIG = require('./../lib/config');
 /**
  * @author Sven Hedström-Lang
  *
- * @param {string} projectPath
+ * @requires http://sass-lang.com/install
  */
 let projectPath = CONFIG.getKey('projectPath');
+let sassInput = CONFIG.PARAM.sassInput;
+let sassOutput = CONFIG.PARAM.sassOutput;
 
-fs.stat(projectPath, function (err, stats) {
-	if (err) {
-		return console.warn(`The directory (${projectPath}) not exists.`);
-		// console.warn(err);
-	}
-
-	exec(
-		`rm -rf ${projectPath}`,
-		CONFIG.onCallback
-	);
-
-	return console.log(`The directory (${projectPath}) removed.`);
-
-});
+exec(
+	`sass ${sassInput}:${sassOutput} --sourcemap=none --line-numbers --no-cache`,
+	CONFIG.onCallback
+);
