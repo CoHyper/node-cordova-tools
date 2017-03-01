@@ -8,31 +8,54 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-
 /**
- * @author Sven Hedström-Lang
- *
- * @param {string} projectPath
+ * cordova clean
  */
-let projectPath = CONFIG.getKey('projectPath');
 
-fs.stat(projectPath, function (err, stats) {
-	if (err) {
-		return console.warn(err);
-	}
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'cordova-clean';
 
-	if (stats && stats.isDirectory()) {
-		exec(
-			[
-				`cd ${projectPath}`,
-				'cordova clean'
-			].join(' && '),
-			CONFIG.onCallback
-		);
-	} else {
-		console.warn(`The projectPath (${projectPath}) not exists.`);
-	}
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
 });
+
+if (CONFIG.isArgs(['projectPath'], NAMESPACE)) {
+
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+
+	fs.stat(projectPath, function (err, stats) {
+		if (err) {
+			CONFIG.nctReport({
+				type: 'ERROR',
+				namespace: NAMESPACE,
+				message: err
+			});
+		} else { // if (stats && stats.isDirectory()) {
+
+			exec(
+				[
+					`cd ${projectPath}`,
+					'cordova clean'
+				].join(' && '),
+				function (error, stdout, stderr) {
+					if (error) {
+						console.warn(stdout);
+						console.warn(stderr);
+						console.warn(error);
+					} else {
+						CONFIG.nctReport({
+							type: 'ERROR',
+							namespace: NAMESPACE,
+							message: stdout
+						});
+					}
+				}
+			);
+		}
+
+	});
+
+}

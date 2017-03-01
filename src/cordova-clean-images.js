@@ -9,7 +9,7 @@
  */
 
 /**
- * Delete files not folder.
+ * Delete images from cordova.
  */
 
 const CONFIG = require('./../lib/config');
@@ -25,21 +25,17 @@ if (CONFIG.isArgs(['projectPath', 'title'], NAMESPACE)) {
 	const exec = require('child_process').exec;
 	const fs = require('fs');
 	const projectPath = CONFIG.getKey('projectPath');
-	let title = CONFIG.getKey('title');
+	const title = CONFIG.replaceEmptyString(CONFIG.getKey('title'));
 
-	// bugfix: spaces in title
-	title = title.replace(/ /g, '\\ ');
-
-	let images = [
+	// The cordova images.
+	[
 		`${projectPath}/platforms/android/res/**/screen.png`,
 		`${projectPath}/platforms/android/res/**/icon.png`,
 		`${projectPath}/platforms/browser/img/logo.png`,
 		`${projectPath}/platforms/ios/${title}/Images.xcassets/AppIcon.appiconset/*.png`,
 		`${projectPath}/platforms/ios/${title}/Images.xcassets/LaunchImage.launchimage/*.png`,
 		`${projectPath}/www/img/logo.png`
-	];
-
-	images.forEach(function (item) {
+	].forEach(function (item) {
 		exec(
 			`rm -rf ${item}`,
 			function (error, stdout, stderr) {
@@ -61,8 +57,3 @@ if (CONFIG.isArgs(['projectPath', 'title'], NAMESPACE)) {
 	});
 
 }
-
-CONFIG.nctReport({
-	type: 'END',
-	namespace: NAMESPACE
-});

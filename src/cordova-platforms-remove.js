@@ -8,43 +8,61 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-
 /**
- * Add cordova platforms.
- *
- * @author Sven Hedström-Lang
- *
- * @requires npm install -g cordova
- *
- * @param {string} projectPath
- * @param {array} platforms
+ * cordova platform rm <platform> --save
  */
-let projectPath = CONFIG.getKey('projectPath');
-let platforms = CONFIG.getKey('platforms');
 
-if (CONFIG.isArray(platforms) && platforms.length) {
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'cordova-platform-remove';
 
-	fs.stat(projectPath, function (err, stats) {
-		if (err) {
-			return console.warn(err);
-		}
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
+});
 
-		if (stats && stats.isDirectory()) {
-			exec(
-				[
-					`cd ${projectPath}`,
-					`cordova platform rm ${platforms.join(' ')} --save`
-				].join(' && '),
-				CONFIG.onCallback
-			);
-		} else {
-			console.warn(`The projectPath (${projectPath}) not exists.`);
-		}
-	});
+if (CONFIG.isArgs(['projectPath', 'platforms'], NAMESPACE)) {
 
-} else {
-	console.warn('No platform founds.');
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+	const platforms = CONFIG.getKey('platforms');
+
+	if (platforms.length) {
+
+		fs.stat(projectPath, function (err, stats) {
+			if (err) {
+				CONFIG.nctReport({
+					type: 'ERROR',
+					namespace: NAMESPACE,
+					message: err
+				});
+
+				return;
+			}
+
+			if (stats && stats.isDirectory()) {
+				exec(
+					[
+						`cd ${projectPath}`,
+						`cordova platform rm ${platforms.join(' ')} --save`
+					].join(' && '),
+					function (error, stdout, stderr) {
+						if (error) {
+							console.warn(stdout);
+							console.warn(stderr);
+							console.warn(error);
+						} else {
+							CONFIG.nctReport({
+								type: 'INFO',
+								namespace: NAMESPACE,
+								message: stdout
+							});
+						}
+					}
+				);
+			}
+		});
+
+	}
+
 }

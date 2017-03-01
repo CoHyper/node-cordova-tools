@@ -8,7 +8,6 @@
  * Licensed under the MIT license.
  */
 
-let eslint = require('eslint');
 let exec = require('child_process').exec;
 let fs = require('fs');
 let CONFIG = require('./../lib/config');

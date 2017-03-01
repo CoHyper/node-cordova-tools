@@ -8,46 +8,65 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-
 /**
- * Add cordova platforms.
- *
- * @author Sven Hedström-Lang
- *
- * @requires npm install -g cordova
- *
- * @param {string} projectPath
- * @param {array} platforms
+ * cordova platform add <platform> --save
  */
-let projectPath = CONFIG.getKey('projectPath');
-let platforms = CONFIG.getKey('platforms');
 
-if (CONFIG.isArray(platforms) && platforms.length) {
-	fs.stat(projectPath, function (err, stats) {
-		if (err) {
-			return console.warn(err);
-		}
-
-		if (stats && stats.isDirectory()) {
-			exec(
-				[
-					`cd ${projectPath}`,
-					`cordova platform add ${platforms.join(' ')} --save`
-				].join(' && '),
-				CONFIG.onCallback
-			);
-		} else {
-			console.warn(`The projectPath (${projectPath}) not exists.`);
-		}
-	});
-} else {
-	console.warn('No platform found.');
-}
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'cordova-platform-add';
 
 CONFIG.nctReport({
-	type: 'ee',
+	type: 'START',
 	namespace: NAMESPACE
 });
+
+if (CONFIG.isArgs(['projectPath', 'platforms'], NAMESPACE)) {
+
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+	const platforms = CONFIG.getKey('platforms');
+
+	if (platforms.length) {
+		fs.stat(projectPath, function (err, stats) {
+			if (err) {
+				CONFIG.nctReport({
+					type: 'ERROR',
+					namespace: NAMESPACE,
+					message: err
+				});
+
+				return;
+			}
+
+			if (stats && stats.isDirectory()) {
+				exec(
+					[
+						`cd ${projectPath}`,
+						`cordova platform add ${platforms.join(' ')} --save`
+					].join(' && '),
+					function (error, stdout, stderr) {
+						if (error) {
+							console.warn(stdout);
+							console.warn(stderr);
+							console.warn(error);
+						} else {
+							CONFIG.nctReport({
+								type: 'INFO',
+								namespace: NAMESPACE,
+								message: stdout
+							});
+						}
+					}
+				);
+			}
+		});
+	} else {
+		CONFIG.nctReport({
+			type: 'INFO',
+			namespace: NAMESPACE,
+			message: 'No platform installed.'
+		});
+	}
+
+}

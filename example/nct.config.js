@@ -13,8 +13,7 @@ module.exports = {
 	"report": {
 		"start": true,
 		"error": true,
-		"info": true,
-		"end": true
+		"info": true
 	},
 
 	/**

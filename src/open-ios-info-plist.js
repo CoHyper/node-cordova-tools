@@ -8,33 +8,61 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-
 /**
- * @author Sven Hedström-Lang
+ * Open the file "<project title>-Info.plist".
+ * To edit something. Is haster as search in xCode.
  *
- * @param {string} projectPath
- * @param {string} textEditor - Path to a text editor (IDE).
- * @param {string} title
+ * e.g.: Add after <dict>
+ *     <key>CFBundleLocalizations</key><array><string>de</string></array>
+ *     <key>ITSAppUsesNonExemptEncryption</key><false/>
  */
-let projectPath = CONFIG.getKey('projectPath');
-let textEditor = CONFIG.getKey('textEditor');
-let title = CONFIG.getKey('title');
 
-fs.stat(projectPath, function (err, stats) {
-	if (err) {
-		return console.warn(err);
-	}
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'open-ios-info-plist';
 
-	// todo move to config
-	// bugfix: spaces in title
-	title = title.replace(/ /g, '\\ ');
-
-	exec(
-		`${textEditor} ${projectPath}/platforms/ios/${title}/${title}-Info.plist`,
-		CONFIG.onCallback
-	);
-
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
 });
+
+if (CONFIG.isArgs(['projectPath', 'textEditor', 'title'], NAMESPACE)) {
+
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+	const textEditor = CONFIG.getKey('textEditor');
+	const title = CONFIG.replaceEmptyString(CONFIG.getKey('title'));
+	const iosFolder = `${projectPath}/platforms/ios/${title}`;
+
+	fs.stat(iosFolder, function (err, stats) {
+
+		if (err) {
+			CONFIG.nctReport({
+				type: 'ERROR',
+				namespace: NAMESPACE,
+				message: err
+			});
+
+			return;
+		}
+
+		exec(
+			`${textEditor} ${iosFolder}/${title}-Info.plist`,
+			function (error, stdout, stderr) {
+				if (error) {
+					console.warn(stdout);
+					console.warn(stderr);
+					console.warn(error);
+				} else {
+					CONFIG.nctReport({
+						type: 'INFO',
+						namespace: NAMESPACE,
+						message: stdout
+					});
+				}
+			}
+		);
+
+	});
+
+}

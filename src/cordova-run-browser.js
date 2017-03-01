@@ -11,13 +11,6 @@
 let exec = require('child_process').exec;
 let fs = require('fs');
 let CONFIG = require('./../lib/config');
-
-/**
- * @author Sven Hedström-Lang
- *
- * @requires npm install -g cordova
- */
-
 let projectPath = CONFIG.getKey('projectPath');
 let platforms = CONFIG.getKey('platforms');
 let platform = 'browser';

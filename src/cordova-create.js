@@ -60,8 +60,3 @@ if (CONFIG.isArgs(['projectPath', 'bundleId', 'title'], NAMESPACE)) {
 	});
 
 }
-
-CONFIG.nctReport({
-	type: 'END',
-	namespace: NAMESPACE
-});

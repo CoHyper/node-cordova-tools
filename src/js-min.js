@@ -8,33 +8,17 @@
  * Licensed under the MIT license.
  */
 
-let fs = require('fs');
-let compressor = require('node-minify');
-let CONFIG = require('./../lib/config');
-
 /**
- * @author Sven Hedström-Lang
- *
- * @requires npm install --save-dev node-minify
- * https://www.npmjs.com/package/node-minify
  *
  * @test works with uglify-js
- *
- * @param {string} projectPath
- * @param {object} jsMinifyOptions
- * @param {function} jsMinifyOptions.callback
- * @param {array} jsMinifyOptions.input
- * @param {string} jsMinifyOptions.output
- *
- * @example
- * 		jsMinifyOptions: {
- * 			compressor: 'uglifyjs',
- * 			input: [
- * 				'app/www/js/*.js'
- * 			],
- * 			output: 'www/js/index.js' // relativ to projectPath
- * 		}
  */
+
+const fs = require('fs');
+const compressor = require('node-minify');
+const CONFIG = require('./../lib/config');
+
+
+
 let projectPath = CONFIG.getKey('projectPath');
 let jsMinifyOptions = CONFIG.getKey('jsMinifyOptions');
 

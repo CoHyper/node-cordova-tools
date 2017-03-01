@@ -18,7 +18,7 @@ const CONFIG = require('./../lib/config');
 const NAMESPACE = 'copy';
 
 CONFIG.nctReport({
-	type: 'END',
+	type: 'START',
 	namespace: NAMESPACE
 });
 
@@ -93,8 +93,3 @@ if (CONFIG.isArgs(['projectPath', 'copy'], NAMESPACE)) {
 	}
 
 }
-
-CONFIG.nctReport({
-	type: 'END',
-	namespace: NAMESPACE
-});
