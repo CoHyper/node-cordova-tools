@@ -21,41 +21,46 @@ let CONFIG = require('./../lib/config');
  * @param {string} projectPath
  * @param {object} copy
  */
-let projectPath = CONFIG.getKey('projectPath');
-let copy = CONFIG.getKey('copy');
-let command = [];
+if (CONFIG.isArgs(['projectPath', 'copy'])) {
 
-if (CONFIG.isObject(copy)) {
+	let projectPath = CONFIG.getKey('projectPath');
+	let copy = CONFIG.getKey('copy');
+	let command = [];
 
-	for (let key in copy) {
-		if (copy.hasOwnProperty(key)) {
-			fs.stat(key, function (err, stats) {
-				if (err) {
-					return console.warn(err);
-				}
+	if (CONFIG.isObject(copy)) {
 
-				if (stats && (stats.isDirectory() || stats.isFile())) {
-					command.push(`cp -r ${key} ${projectPath}/${copy[key]}`);
-					console.log(`copy ${key} to ${projectPath}/${copy[key]}`);
-				} else {
-					console.warn(`(${key}) is no file or folder.`);
-				}
-			});
+		for (let key in copy) {
 
+			if (copy.hasOwnProperty(key)) {
+				fs.stat(key, function (err, stats) {
+					if (err) {
+						return console.warn(err);
+					}
+
+					if (stats && (stats.isDirectory() || stats.isFile())) {
+						command.push(`cp -r ${key} ${projectPath}/${copy[key]}`);
+						console.log(`copy ${key} to ${projectPath}/${copy[key]}`);
+					} else {
+						console.warn(`(${key}) is no file or folder.`);
+					}
+				});
+
+			}
 		}
+
+		fs.stat(projectPath, function (err, stats) {
+			if (err) {
+				return console.warn(err);
+			}
+
+			if (stats && stats.isDirectory()) {
+				exec(
+					command.join(' && '),
+					CONFIG.onCallback
+				);
+			}
+		});
+
 	}
-
-	fs.stat(projectPath, function (err, stats) {
-		if (err) {
-			return console.warn(err);
-		}
-
-		if (stats && stats.isDirectory()) {
-			exec(
-				command.join(' && '),
-				CONFIG.onCallback
-			);
-		}
-	});
 
 }
