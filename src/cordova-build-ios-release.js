@@ -8,36 +8,65 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
+const PLATFORM = 'ios';
 
 /**
- * @author Sven Hedström-Lang
+ * COPY from "cordova-build-android-release.js".
  *
- * @requires npm install -g cordova
- *
- * @param {string} projectPath
- * @param {string} buildConfig
- * @param {string} platform
+ * cordova clean <PLATFORM>
+ * cordova build <PLATFORM>
  */
-let projectPath = CONFIG.getKey('projectPath');
-let buildConfig = CONFIG.getKey('buildConfig');
-let platform = 'ios';
 
-fs.stat(projectPath, function (err, stats) {
-	if (err) {
-		return console.warn(err);
-	}
+const CONFIG = require('./../lib/config');
+const NAMESPACE = `cordova-build-${PLATFORM}-release`;
 
-	if (stats && stats.isDirectory()) {
-		exec(
-			[
-				`cd ${projectPath}`,
-				`cordova clean ${platform}`,
-				`cordova build ${platform} --release --buildConfig ${buildConfig}`
-			].join(' && '),
-			CONFIG.onCallback
-		);
-	}
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
 });
+
+if (CONFIG.isArgs(['projectPath', 'buildConfig'], NAMESPACE)) {
+
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+	const buildConfig = CONFIG.getKey('buildConfig');
+
+	fs.stat(projectPath, function (err, stats) {
+		if (err) {
+			CONFIG.nctReport({
+				type: 'ERROR',
+				namespace: NAMESPACE,
+				message: err
+			});
+
+			return;
+		}
+
+		if (stats && stats.isDirectory()) {
+			exec(
+				[
+					`cd ${projectPath}`,
+					`cordova clean ${PLATFORM}`,
+					`cordova build ${PLATFORM} --release --buildConfig ${buildConfig}`
+				].join(' && '),
+				function (error, stdout, stderr) {
+					if (error) {
+						console.warn(stdout);
+						console.warn(stderr);
+						console.warn(error);
+					} else {
+						// console.log(stdout);
+						CONFIG.nctReport({
+							type: 'INFO',
+							namespace: NAMESPACE,
+							message: `The ${PLATFORM} application build.`
+						});
+					}
+				}
+			);
+		}
+
+	});
+
+}
