@@ -9,11 +9,11 @@
  */
 
 /**
- * Delete images from cordova.
+ * Delete cordova files.
  */
 
 const CONFIG = require('./../lib/config');
-const NAMESPACE = 'cordova-clean-images';
+const NAMESPACE = 'cordova-clean-files';
 
 CONFIG.nctReport({
 	type: 'START',
@@ -27,14 +27,16 @@ if (CONFIG.isArgs(['projectPath', 'title'], NAMESPACE)) {
 	const projectPath = CONFIG.getKey('projectPath');
 	const title = CONFIG.replaceEmptyString(CONFIG.getKey('title'));
 
-	// The cordova images.
+	// The cordova files.
 	[
 		`${projectPath}/platforms/android/res/**/screen.png`,
 		`${projectPath}/platforms/android/res/**/icon.png`,
 		`${projectPath}/platforms/browser/img/logo.png`,
 		`${projectPath}/platforms/ios/${title}/Images.xcassets/AppIcon.appiconset/*.png`,
 		`${projectPath}/platforms/ios/${title}/Images.xcassets/LaunchImage.launchimage/*.png`,
-		`${projectPath}/www/img/logo.png`
+		`${projectPath}/www/css/index.css`,
+		`${projectPath}/www/img/logo.png`,
+		`${projectPath}/www/js/index.js`
 	].forEach(function (item) {
 		exec(
 			`rm -rf ${item}`,
@@ -45,7 +47,7 @@ if (CONFIG.isArgs(['projectPath', 'title'], NAMESPACE)) {
 					console.warn(error);
 				} else {
 					// console.log(stdout);
-					// todo search icons and return only if found, return complet file name
+					// todo search icons and return only if found, return complett file name
 					CONFIG.nctReport({
 						type: 'INFO',
 						namespace: NAMESPACE,
