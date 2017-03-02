@@ -33,28 +33,30 @@ if (CONFIG.isArgs(['projectPath'], NAMESPACE)) {
 				namespace: NAMESPACE,
 				message: err
 			});
-		} else { // if (stats && stats.isDirectory()) {
 
-			exec(
-				[
-					`cd ${projectPath}`,
-					'cordova clean'
-				].join(' && '),
-				function (error, stdout, stderr) {
-					if (error) {
-						console.warn(stdout);
-						console.warn(stderr);
-						console.warn(error);
-					} else {
-						CONFIG.nctReport({
-							type: 'ERROR',
-							namespace: NAMESPACE,
-							message: stdout
-						});
-					}
-				}
-			);
+			return;
 		}
+		// else if (stats && stats.isDirectory()) {
+
+		exec(
+			[
+				`cd ${projectPath}`,
+				'cordova clean'
+			].join(' && '),
+			function (error, stdout, stderr) {
+				if (error) {
+					console.warn(stdout);
+					console.warn(stderr);
+					console.warn(error);
+				} else {
+					CONFIG.nctReport({
+						type: 'ERROR',
+						namespace: NAMESPACE,
+						message: stdout
+					});
+				}
+			}
+		);
 
 	});
 

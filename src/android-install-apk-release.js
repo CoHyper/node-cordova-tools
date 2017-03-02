@@ -8,31 +8,57 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-
 /**
- *
- * @requires "Android Device to USB"
- *
- * @param {string} projectPath
- * @param {string} androidAdb
+ * Install the apk to the Android device.
+ * Android Device to USB.
  */
-let projectPath = CONFIG.getKey('projectPath');
-let androidAdb = CONFIG.getKey('androidAdb');
 
-let releasePath = `${projectPath}/platforms/android/build/outputs/apk`;
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'android-install-apk-release';
 
-// check releasePath
-fs.stat(releasePath, function (err, stats) {
-	if (err) {
-		return console.warn(err);
-	}
-
-	exec(
-		`${androidAdb} install ${releasePath}/android-release.apk`,
-		CONFIG.onCallback
-	);
-
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
 });
+
+if (CONFIG.isArgs(['projectPath', 'androidAdb'], NAMESPACE)) {
+
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+	const androidAdb = CONFIG.getKey('androidAdb');
+	const releasePath = `${projectPath}/platforms/android/build/outputs/apk`;
+
+	// check releasePath
+	fs.stat(releasePath, function (err, stats) {
+		if (err) {
+			CONFIG.nctReport({
+				type: 'ERROR',
+				namespace: NAMESPACE,
+				message: err
+			});
+
+			return;
+		}
+
+		exec(
+			`${androidAdb} install ${releasePath}/android-release.apk`,
+			function (error, stdout, stderr) {
+				if (error) {
+					console.warn(stdout);
+					console.warn(stderr);
+					console.warn(error);
+				} else {
+					// console.log(stdout);
+					CONFIG.nctReport({
+						type: 'INFO',
+						namespace: NAMESPACE,
+						message: `Install to device`
+					});
+				}
+			}
+		);
+
+	});
+
+}

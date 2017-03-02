@@ -40,6 +40,7 @@ if (CONFIG.isArgs(['projectPath', 'copy'], NAMESPACE)) {
 						namespace: NAMESPACE,
 						message: err
 					});
+
 					return;
 				}
 
