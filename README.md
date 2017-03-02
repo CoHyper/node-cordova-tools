@@ -20,14 +20,14 @@ gem install sass
 ````
 ## Variables
 
-| Name | Required | Default | Description |
+| Name | Type | Default | Description |
 |---|----|----|----|
-| bundleId | | | |
-| copy | copy.js | | |
+| bundleId | string | | |
+| copy | object | | |
 | eslintFiles | | | |
-| eslintrc | | | |
+| eslintrc | string | | |
 | jsMinifyOptions | | | |
-| jsMinifyOptions.compressor | | | |
+| jsMinifyOptions.compressor | string | | |
 | jsMinifyOptions.input | | | |
 | jsMinifyOptions.output | | | |
 | jsBrowserify | | | |
@@ -36,11 +36,15 @@ gem install sass
 | jsBrowserify.options | | | |
 | platforms | | | |
 | plugins | | | |
-| projectPath | | | |
+| projectPath | string | | |
+| report | object | | |
+| report.start | boolean | | |
+| report.info | boolean | | |
+| report.error | boolean | | |
 | sassInput | | | |
-| sassOutput | | | |
-| title | | | |
-| version | | | |
+| sassOutput | string | | |
+| title | string | | |
+| version | string | | |
 
 
 ## Create new project
