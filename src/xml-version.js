@@ -8,48 +8,57 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-
 /**
- * @author Sven Hedström-Lang
- *
- * @param {string} projectPath
- * @param {string} configXmlFile
- * @param {string} version
+ * Update the app version in "www/config.xml".
  */
-let projectPath = CONFIG.getKey('projectPath');
-let configXmlFile = `${projectPath}/config.xml`;
-let version = CONFIG.getKey('version');
 
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'xml-version';
 
-fs.readFile(configXmlFile, 'utf8', function (err, stats) {
-	if (err) {
-		return console.warn(err);
-	}
-
-	let result = stats.replace(/version=\"[0-9\.]+"/g, `version="${version}"`);
-
-	fs.writeFile(configXmlFile, result, 'utf8', function (err) {
-		if (err) {
-			return console.warn(err);
-		}
-
-		CONFIG.nctReport({
-			type: 'INFO',
-			namespace: 'xml-version.js',
-			message: `Update the version to ${version}`
-		});
-
-	});
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
 });
 
+if (CONFIG.isArgs(['projectPath', 'version'], NAMESPACE)) {
 
-/*
-exec(
-	`python ${phythonFile}`,
-	CONFIG.onCallback
-);
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+	const version = CONFIG.getKey('version');
+	const configXmlFile = `${projectPath}/config.xml`;
 
-*/
+
+	fs.readFile(configXmlFile, 'utf8', function (err, stats) {
+		if (err) {
+			CONFIG.nctReport({
+				type: 'ERROR',
+				namespace: NAMESPACE,
+				message: err
+			});
+
+			return;
+		}
+
+		let result = stats.replace(/version=\"[0-9\.]+"/g, `version="${version}"`);
+
+		fs.writeFile(configXmlFile, result, 'utf8', function (err) {
+			if (err) {
+				CONFIG.nctReport({
+					type: 'ERROR',
+					namespace: NAMESPACE,
+					message: err
+				});
+
+				return;
+			}
+
+			CONFIG.nctReport({
+				type: 'INFO',
+				namespace: 'xml-version.js',
+				message: `Update the version to ${version}.`
+			});
+
+		});
+	});
+
+}

@@ -20,22 +20,22 @@ gem install sass
 ````
 ## Variables
 
-| Name | Type | Default | Description |
+| Name | Type | - | Description |
 |---|----|----|----|
 | bundleId | string | | |
 | copy | object | | |
-| eslintFiles | | | |
-| eslintrc | string | | |
-| jsMinifyOptions | | | |
+| eslintFiles | array | | All files to control. |
+| eslintrc | string | | The config file for eslint. Works with JS or JSON. |
+| jsMinifyOptions | object | | |
 | jsMinifyOptions.compressor | string | | |
 | jsMinifyOptions.input | | | |
 | jsMinifyOptions.output | | | |
-| jsBrowserify | | | |
+| jsBrowserify | object | | |
 | jsBrowserify.input | | | |
 | jsBrowserify.output | | | |
 | jsBrowserify.options | | | |
-| platforms | | | |
-| plugins | | | |
+| platforms | array | | |
+| plugins | array | | |
 | projectPath | string | | |
 | report | object | | |
 | report.start | boolean | | |

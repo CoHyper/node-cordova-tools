@@ -1,6 +1,11 @@
+#!/usr/bin/env node
 
-/**
- * @author Sven Heddtröm-Lang
+/*
+ * node-cordova-tools
+ * https://github.com/CoHyper/node-cordova-tools
+ *
+ * Copyright (c) 2017 Sven Hedström-Lang
+ * Licensed under the MIT license.
  */
 
 
@@ -8,7 +13,6 @@ module.exports = {
 
 	/**
 	 * @type object
-	 * @default undefined
 	 */
 	"report": {
 		"start": true,
