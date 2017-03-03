@@ -22,6 +22,7 @@ gem install sass
 
 | Name | Type | - | Description |
 |---|----|----|----|
+| projectPath | string | require | |
 | bundleId | string | | |
 | copy | object | | |
 | eslintFiles | array | | All files to control. |
@@ -36,7 +37,6 @@ gem install sass
 | jsBrowserify.options | | | |
 | platforms | array | | |
 | plugins | array | | |
-| projectPath | string | | |
 | report | object | | |
 | report.start | boolean | | |
 | report.info | boolean | | |
@@ -45,6 +45,12 @@ gem install sass
 | sassOutput | string | | |
 | title | string | | |
 | version | string | | |
+
+## Task ID's
+| ID |  Require Variables | Description |
+|---|---|---|
+| 100 | projectPath | convert sass to css |
+| 400 | projectPath | copy files |
 
 
 ## Create new project

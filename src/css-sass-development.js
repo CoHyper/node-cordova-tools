@@ -11,24 +11,26 @@
 const OUTPUTSTYLE = 'nested'; // CSS output style (nested | expanded | compact | compressed)
 const SOURCECOMMENTS = true;
 
-
-// todo
-// todo param override ?
-let file_1 = 'node-cordova-tools/example/app/www/css/_index.scss'; // todo check exists file
-let file_2 = 'node-cordova-tools/example/app/www/css/_index33.css'; // todo comment this file override
-
-
 /**
  * Convert css/scss/sass to css
  */
 
 const CONFIG = require('./../lib/config');
 const NAMESPACE = 'css-sass';
+const NAMESPACE_ID = CONFIG.getProcessEnvID(); // todo
 
 CONFIG.nctReport({
 	type: 'START',
 	namespace: NAMESPACE
 });
+
+
+// no need override
+let file_1 = 'node-cordova-tools/example/app/www/css/_index.scss'; // todo check exists file
+let file_2 = 'node-cordova-tools/example/app/www/css/_index33.css';
+
+
+
 
 if (CONFIG.isArgs(['projectPath'], NAMESPACE)) {
 
