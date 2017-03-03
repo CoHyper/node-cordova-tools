@@ -8,30 +8,60 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-let projectPath = CONFIG.getKey('projectPath');
-let plugins = CONFIG.getKey('plugins');
+/**
+ * cordova plugins rm <plugin> --save
+ */
 
-if (CONFIG.isArray(plugins) && plugins.length) {
-	fs.stat(projectPath, function (err, stats) {
-		if (err) {
-			return console.warn(err);
-		}
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'cordova-plugins-remove';
 
-		if (stats && stats.isDirectory()) {
-			exec(
-				[
-					`cd ${projectPath}`,
-					`cordova plugin rm ${plugins.join(' ')} --save`
-				].join(' && '),
-				CONFIG.onCallback
-			);
-		} else {
-			console.warn(`The projectPath (${projectPath}) not exists.`);
-		}
-	});
-} else {
-	console.warn('No plugins found.');
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
+});
+
+if (CONFIG.isArgs(['projectPath', 'plugins'], NAMESPACE)) {
+
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+	const plugins = CONFIG.getKey('plugins');
+
+	if (plugins.length) {
+		fs.stat(projectPath, function (err, stats) {
+			if (err) {
+				CONFIG.nctReport({
+					type: 'ERROR',
+					namespace: NAMESPACE,
+					message: err
+				});
+
+				return;
+			}
+
+			if (stats && stats.isDirectory()) {
+				exec(
+					[
+						`cd ${projectPath}`,
+						`cordova plugin rm ${plugins.join(' ')} --save`
+					].join(' && '),
+					function (error, stdout, stderr) {
+						if (error) {
+							console.warn(stdout);
+							console.warn(stderr);
+							console.warn(error);
+						} else {
+							// console.log(stdout);
+							CONFIG.nctReport({
+								type: 'INFO',
+								namespace: NAMESPACE,
+								message: 'All plugins removed.'
+							});
+						}
+					}
+				);
+			}
+		});
+	}
+
 }

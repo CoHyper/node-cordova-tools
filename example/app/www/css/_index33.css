@@ -1,0 +1,8 @@
+/* line 2, node-cordova-tools/example/app/www/css/_index.scss */
+a {
+  font-size: 24px;
+  text-align: center;
+  color: red; }
+  /* line 7, node-cordova-tools/example/app/www/css/_index.scss */
+  a:hover {
+    cursor: pointer; }

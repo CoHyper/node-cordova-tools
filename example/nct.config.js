@@ -60,12 +60,19 @@ module.exports = {
 		'cordova-plugin-dialogs',
 		'cordova-plugin-whitelist'
 	],
-	sassInput: 'www/css/_index.scss',
 
-	/**
-	 * @type string - Relativ to projectPath.
-	 */
-	sassOutput: 'www/css/index.css',
+	cssSass: {
+		development: {
+			inputFile: '',
+			outputFile: ''
+		},
+		production: {
+			inputFile: '',
+			outputFile: ''
+		}
+	},
+	// sassInput: 'www/css/_index.scss',
+	// sassOutput: 'www/css/index.css', // Relativ to projectPath.
 
 	/**
 	 * @type object

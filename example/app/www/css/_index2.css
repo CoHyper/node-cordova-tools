@@ -3,8 +3,8 @@ a {
   font-size: 24px;
   text-align: center;
   color: red;
+}
 
-  &:hover {
-    cursor: pointer;
-  }
+a:hover {
+	cursor: pointer;
 }

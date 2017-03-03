@@ -8,25 +8,62 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
-let projectPath = CONFIG.getKey('projectPath');
-let platforms = CONFIG.getKey('platforms');
-let platform = 'browser';
+const PLATFORM = 'browser';
 
-fs.stat(`${projectPath}/platforms/${platform}`, function (err, stats) {
-	if (err) {
-		return console.warn(err);
-	}
+/**
+ * cordova run <PLATFORM>
+ */
 
-	if (stats && stats.isDirectory()) {
-		exec(
-			[
-				`cd ${projectPath}`,
-				`cordova run ${platform}`
-			].join(' && '),
-			CONFIG.onCallback
-		);
-	}
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'cordova-run-browser';
+
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
 });
+
+if (CONFIG.isArgs(['projectPath', 'platforms'], NAMESPACE)) {
+
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+	const platforms = CONFIG.getKey('platforms');
+	const platformPath = `${projectPath}/platforms/${PLATFORM}`;
+
+	// check platformPath
+	fs.stat(platformPath, function (err, stats) {
+		if (err) {
+			CONFIG.nctReport({
+				type: 'ERROR',
+				namespace: NAMESPACE,
+				message: err
+			});
+
+			return;
+		}
+
+		if (stats && stats.isDirectory()) {
+			exec(
+				[
+					`cd ${projectPath}`,
+					`cordova run ${PLATFORM}`
+				].join(' && '),
+				function (error, stdout, stderr) {
+					if (error) {
+						console.warn(stdout);
+						console.warn(stderr);
+						console.warn(error);
+					} else {
+						//console.log(stdout);
+						CONFIG.nctReport({
+							type: 'INFO',
+							namespace: NAMESPACE,
+							message: `Run ${PLATFORM}.`
+						});
+					}
+				}
+			);
+		}
+	});
+
+}

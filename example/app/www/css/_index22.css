@@ -1,0 +1,11 @@
+/* line 2, node-cordova-tools/example/app/www/css/_index2.css */
+a {
+  font-size: 24px;
+  text-align: center;
+  color: red;
+}
+
+/* line 8, node-cordova-tools/example/app/www/css/_index2.css */
+a:hover {
+  cursor: pointer;
+}

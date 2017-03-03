@@ -7,6 +7,7 @@
   "scripts": {},
   "devDependencies": {
     "eslint": "^3.16.1",
-    "node-minify": "^2.0.3"
+    "node-minify": "^2.0.3",
+    "node-sass": "^4.5.0"
   }
 }
