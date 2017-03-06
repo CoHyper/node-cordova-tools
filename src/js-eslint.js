@@ -8,27 +8,40 @@
  * Licensed under the MIT license.
  */
 
-let exec = require('child_process').exec;
-let fs = require('fs');
-let CONFIG = require('./../lib/config');
+const CONFIG = require('./../lib/config');
+const NAMESPACE = 'js-eslint';
 
-/**
- * @author Sven Hedström-Lang
- *
- * @requires npm install --save-dev eslint
- * http://eslint.org/docs/user-guide/getting-started
- *
- * @param {string} projectPath
- * @param {string} eslintrc
- * @param {array} eslintFiles
- */
-let projectPath = CONFIG.getKey('projectPath');
-let eslintrc = CONFIG.getKey('eslintrc');
-let eslintFiles = CONFIG.getKey('eslintFiles');
+CONFIG.nctReport({
+	type: 'START',
+	namespace: NAMESPACE
+});
 
-if (CONFIG.isArray(eslintFiles)) {
-	exec(
-		`node_modules/.bin/eslint --config ${eslintrc} ${eslintFiles.join(' ')}`,
-		CONFIG.onCallback
-	);
+if (CONFIG.isArgs(['projectPath', 'eslintrc', 'eslintFiles'], NAMESPACE)) {
+
+	const exec = require('child_process').exec;
+	const fs = require('fs');
+	const projectPath = CONFIG.getKey('projectPath');
+	const eslintrc = CONFIG.getKey('eslintrc');
+	const eslintFiles = CONFIG.getKey('eslintFiles');
+
+	if (CONFIG.isArray(eslintFiles)) {
+		exec(
+			`node_modules/.bin/eslint --config ${eslintrc} ${eslintFiles.join(' ')}`,
+			function (error, stdout, stderr) {
+				if (error) {
+					console.warn(stdout);
+					console.warn(stderr);
+					console.warn(error);
+				} else {
+					// console.log(stdout);
+					CONFIG.nctReport({
+						type: 'INFO',
+						namespace: NAMESPACE,
+						message: `Check JS Files.`
+					});
+				}
+			}
+		);
+	}
+
 }

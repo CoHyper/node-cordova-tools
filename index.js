@@ -12,14 +12,17 @@
 if (process.argv) {
 
 	const exec = require('child_process').exec;
+
 	const TASKS = {
 		// 100 - css
-		'_100': 'css-sass-development',
+		'_101': 'css-sass-development',
 		// 200 - html
 		// 300 - img
-		// 400 - js (cordova)
-		'_400': 'copy',
-		'_401': 'js-eslint'
+		// 400 - js
+		'_401': 'copy',
+		'_402': 'js-eslint'
+		// 500 cordova
+
 		// todo cordova run PLATFORM
 		// todo - id = namespace
 		// todo solution for deprecated

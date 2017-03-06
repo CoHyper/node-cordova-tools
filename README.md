@@ -4,18 +4,10 @@
 
 ## Require
 * NodeJS
+* npm install -g cordova
 
 ## Require Optional
 ````shell
-// js-eslint
-npm install --save-dev eslint
- 
-// node-minify
-// https://www.npmjs.com/package/node-minify
-npm install --save-dev node-minify
-
-// sass
-gem install sass
  
 ````
 ## Variables
@@ -35,8 +27,8 @@ gem install sass
 | jsBrowserify.input | | | |
 | jsBrowserify.output | | | |
 | jsBrowserify.options | | | |
-| platforms | array | | |
-| plugins | array | | |
+| platforms | array | | To install at a cordova application. |
+| plugins | array | | To install at a cordova application. |
 | report | object | | |
 | report.start | boolean | | |
 | report.info | boolean | | |
@@ -47,10 +39,10 @@ gem install sass
 | version | string | | |
 
 ## Task ID's
-| ID |  Require Variables | Description |
+| ID |  | Description |
 |---|---|---|
-| 100 | projectPath | convert sass to css |
-| 400 | projectPath | copy files |
+| 100 |  | convert sass to css |
+| 400 |  | copy files |
 
 
 ## Create new project
