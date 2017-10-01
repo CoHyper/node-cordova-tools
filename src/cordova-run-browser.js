@@ -46,7 +46,8 @@ if (CONFIG.isArgs(['projectPath', 'platforms'], NAMESPACE)) {
 			exec(
 				[
 					`cd ${projectPath}`,
-					`cordova run ${PLATFORM}`
+					//`cordova build ${PLATFORM}`
+					 `cordova run ${PLATFORM}`
 				].join(' && '),
 				function (error, stdout, stderr) {
 					if (error) {

@@ -11,6 +11,7 @@
 let exec = require('child_process').exec;
 let fs = require('fs');
 let CONFIG = require('./../lib/config');
+const NAMESPACE = 'js-browserify-babelify';
 
 /**
  * Require 'projectPath/www/js' folder.
@@ -27,7 +28,7 @@ let CONFIG = require('./../lib/config');
  * @param {string} jsBrowserify.options
  * @param {string} nodeModulesDir
  */
-if (CONFIG.isArgs(['projectPath', 'jsBrowserify', 'nodeModulesDir'])) {
+if (CONFIG.isArgs(['projectPath', 'jsBrowserify', 'nodeModulesDir'], NAMESPACE)) {
 
 	let projectPath = CONFIG.getKey('projectPath');
 	let jsBrowserify = CONFIG.getKey('jsBrowserify');
@@ -69,8 +70,8 @@ if (CONFIG.isArgs(['projectPath', 'jsBrowserify', 'nodeModulesDir'])) {
 							// console.log(stdout);
 							CONFIG.nctReport({
 								type: 'INFO',
-								namespace: 'js-browserify-babelify',
-								message: 'Build browserify and babelify.' + stdout
+								namespace: NAMESPACE,
+								message: 'Build browserify and babelify. ' + stdout
 							});
 						}
 					}
